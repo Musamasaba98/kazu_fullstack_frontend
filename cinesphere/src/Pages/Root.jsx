@@ -1,5 +1,15 @@
+import { Outlet } from "react-router-dom";
+import Footer from "../Components/Footer";
+import Navbar from "../Components/Navbar";
+
 function Root() {
-  return <h1 className="text-3xl font-bold underline">CineSphere</h1>;
+  return (
+    <div>
+      <Navbar />
+      <Outlet />
+      <Footer />
+    </div>
+  );
 }
 
 export default Root;
