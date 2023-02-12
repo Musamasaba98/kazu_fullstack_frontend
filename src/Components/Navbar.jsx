@@ -15,7 +15,7 @@ const Navbar = () => {
   return (
     <>
       <nav
-        className={`sticky top-0  flex flex-wrap items-center justify-between px-2 py-3  mb-3 ${
+        className={`sticky top-0  flex flex-wrap items-center justify-between px-2 py-3 z-10  mb-3 ${
           movieId ? "" : "bg-gray-900"
         }`}
       >
@@ -39,11 +39,13 @@ const Navbar = () => {
               <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
                 <li className="nav-item">
                   <Link
-                    className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                    className="px-3  py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
                     to="pablo"
                   >
                     <i className="fab fa-facebook-square text-lg leading-lg text-white opacity-75"></i>
-                    <span className="xl:ml-2">Home</span>
+                    <span className="xl:ml-2 md:text-base sm:text-medium">
+                      Home
+                    </span>
                   </Link>
                 </li>
                 <li className="nav-item">
@@ -52,7 +54,9 @@ const Navbar = () => {
                     to="/"
                   >
                     <i className="fab fa-twitter text-lg leading-lg text-white opacity-75"></i>
-                    <span className="xl:ml-2">TV Shows</span>
+                    <span className="xl:ml-2 md:text-base sm:text-medium">
+                      TV Shows
+                    </span>
                   </Link>
                 </li>
                 <li className="nav-item">
@@ -61,7 +65,9 @@ const Navbar = () => {
                     to="/"
                   >
                     <i className="fab fa-pinterest text-lg leading-lg text-white opacity-75"></i>
-                    <span className="xl:ml-2">Movies</span>
+                    <span className="xl:ml-2 md:text-base sm:text-medium">
+                      Movies
+                    </span>
                   </Link>
                 </li>
 
@@ -71,7 +77,9 @@ const Navbar = () => {
                     to="/"
                   >
                     <i className="fab fa-pinterest text-lg leading-lg text-white opacity-75"></i>
-                    <span className="xl:ml-2">New & Popular</span>
+                    <span className="xl:ml-2 md:text-base sm:text-medium">
+                      New & Popular
+                    </span>
                   </Link>
                 </li>
                 <li className="nav-item">
@@ -80,7 +88,9 @@ const Navbar = () => {
                     to="/"
                   >
                     <i className="fab fa-pinterest text-lg leading-lg text-white opacity-75"></i>
-                    <span className="xl:ml-2">My List</span>
+                    <span className="xl:ml-2 md:text-base sm:text-medium">
+                      My List
+                    </span>
                   </Link>
                 </li>
               </ul>
@@ -157,7 +167,7 @@ const Navbar = () => {
                   className="px-1 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
                   to="pablo"
                 >
-                  <span className="ml-2">KIDS</span>
+                  <span className="ml-2 md:text-base sm:text-medium">KIDS</span>
                 </Link>
               </li>
               <li className="nav-item">

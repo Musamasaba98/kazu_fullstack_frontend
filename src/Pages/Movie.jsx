@@ -10,7 +10,9 @@ const Movie = () => {
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
-        `https://api.themoviedb.org/3/movie/${movieId}?api_key=39c5c02d12f04b7ad749d677aa191591`
+        `https://api.themoviedb.org/3/movie/${movieId}?api_key=${
+          import.meta.env.VITE_API_KEY
+        }`
       );
       setMovie(result.data);
     };
@@ -30,7 +32,7 @@ const Movie = () => {
             https://image.tmdb.org/t/p/original${movie.poster_path}
           )`,
         }}
-        className="w-full  -mt-24 h-full bg-cover bg-center bg-no-repeat flex item-center justify-start"
+        className="w-full  -mt-24  h-60v bg-cover bg-center bg-no-repeat flex item-center justify-start"
       >
         <MovieCard movie={movie} />
       </header>

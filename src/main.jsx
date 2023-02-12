@@ -4,7 +4,7 @@ import Root from "./Pages/Root";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorPage from "./Pages/ErrorPage";
-import Home from "./Pages/Home";
+import Home, { loader as homeMovieTvLoader } from "./Pages/Home";
 import Movie from "./Pages/Movie";
 import Search from "./Pages/Search";
 import Category from "./Pages/Category";
@@ -15,7 +15,7 @@ const router = createBrowserRouter([
     element: <Root />,
     errorElement: <ErrorPage />,
     children: [
-      { index: true, element: <Home /> },
+      { index: true, element: <Home />, loader: homeMovieTvLoader },
       {
         path: "/search",
         element: <Search />,
