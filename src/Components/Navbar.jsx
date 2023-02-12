@@ -1,25 +1,90 @@
-import React from "react";
+import React, { useState } from "react";
+import { Form, Link, useParams } from "react-router-dom";
+import Logo from "../assets/images/Logo.svg";
+import { HiOutlineMenuAlt2 } from "react-icons/hi";
+import { HiBell } from "react-icons/hi";
 
 const Navbar = () => {
-  const [navbarOpen, setNavbarOpen] = React.useState(false);
+  const { movieId } = useParams();
+  const [navbarOpen, setNavbarOpen] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
+  const toggleSearch = () => {
+    setShowSearch(!showSearch);
+  };
+  const [user, setUser] = useState({});
   return (
     <>
-      <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 bg-cyan-500 mb-3">
-        <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
-          <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
-            <a
-              className="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-white"
-              href="#pablo"
+      <nav
+        className={`sticky top-0  flex flex-wrap items-center justify-between px-2 py-3  mb-3 ${
+          movieId ? "" : "bg-gray-900"
+        }`}
+      >
+        <div className="container w-full px-4 flex md:mx-auto xs:ml-5 min-w-fit gap-1  items-center justify-between">
+          <div className="text-white font lg:hidden">
+            <HiOutlineMenuAlt2 size={25} />
+          </div>
+          <div className="relative flex justify-between md:gap-0 item-center">
+            <Link
+              className="text-sm font-bold leading-relaxed inline-block lg:mr-4  py-2 whitespace-nowrap uppercase text-white"
+              to="/"
             >
-              cyan Tailwind Starter Kit
-            </a>
-            <button
-              className="text-white cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
-              type="button"
-              onClick={() => setNavbarOpen(!navbarOpen)}
+              <img src={Logo} alt="chatbot" className="w-36" />
+            </Link>
+            <div
+              className={
+                "lg:flex flex-grow items-center" +
+                (navbarOpen ? " flex" : " hidden")
+              }
             >
-              <i className="fas fa-bars"></i>
-            </button>
+              <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
+                <li className="nav-item">
+                  <Link
+                    className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                    to="pablo"
+                  >
+                    <i className="fab fa-facebook-square text-lg leading-lg text-white opacity-75"></i>
+                    <span className="xl:ml-2">Home</span>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link
+                    className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                    to="/"
+                  >
+                    <i className="fab fa-twitter text-lg leading-lg text-white opacity-75"></i>
+                    <span className="xl:ml-2">TV Shows</span>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link
+                    className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                    to="/"
+                  >
+                    <i className="fab fa-pinterest text-lg leading-lg text-white opacity-75"></i>
+                    <span className="xl:ml-2">Movies</span>
+                  </Link>
+                </li>
+
+                <li className="nav-item">
+                  <Link
+                    className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                    to="/"
+                  >
+                    <i className="fab fa-pinterest text-lg leading-lg text-white opacity-75"></i>
+                    <span className="xl:ml-2">New & Popular</span>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link
+                    className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                    to="/"
+                  >
+                    <i className="fab fa-pinterest text-lg leading-lg text-white opacity-75"></i>
+                    <span className="xl:ml-2">My List</span>
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </div>
           <div
             className={
@@ -28,35 +93,113 @@ const Navbar = () => {
             }
             id="example-navbar-danger"
           >
-            <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
+            <ul className="flex flex-col lg:flex-row list-none lg:ml-auto justify-between items-center">
               <li className="nav-item">
-                <a
-                  className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                  href="#pablo"
+                <Link
+                  className="px-2 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                  to="/search"
                 >
-                  <i className="fab fa-facebook-square text-lg leading-lg text-white opacity-75"></i>
-                  <span className="ml-2">Share</span>
-                </a>
+                  <div className="relative">
+                    <button
+                      className="text-gray-500 hover:text-gray-600"
+                      onClick={toggleSearch}
+                    >
+                      <svg
+                        className="h-6 w-6"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                        />
+                      </svg>
+                    </button>
+                    {showSearch && (
+                      <div className="absolute top-0 right-0 bg-white shadow-md rounded-lg w-64">
+                        <div className="relative">
+                          <Form>
+                            <input
+                              className="w-full px-4 flex-grow text-black py-2 rounded-lg border-2 border-gray-300 focus:outline-none focus:border-gray-500"
+                              type="text"
+                              placeholder="Search"
+                            />
+                            <button
+                              className="absolute top-0 right-0 mt-2 mr-2"
+                              onClick={toggleSearch}
+                            >
+                              <svg
+                                className="h-6 w-6 text-gray-400"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth="2"
+                                  d="M6 18L18 6M6 6l12 12"
+                                />
+                              </svg>
+                            </button>
+                          </Form>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </Link>
               </li>
               <li className="nav-item">
-                <a
-                  className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                  href="#pablo"
+                <Link
+                  className="px-1 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                  to="pablo"
                 >
-                  <i className="fab fa-twitter text-lg leading-lg text-white opacity-75"></i>
-                  <span className="ml-2">Tweet</span>
-                </a>
+                  <span className="ml-2">KIDS</span>
+                </Link>
               </li>
               <li className="nav-item">
-                <a
-                  className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                  href="#pablo"
+                <Link
+                  className="px-2 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                  to="pablo"
                 >
-                  <i className="fab fa-pinterest text-lg leading-lg text-white opacity-75"></i>
-                  <span className="ml-2">Pin</span>
-                </a>
+                  <div className="p-0">
+                    <strong className="relative inline-flex items-center  px-2.5 py-1.5 text-xs font-medium">
+                      <span className="items absolute -top-1 -right-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-red-700">
+                        <span>20</span>
+                      </span>
+                      <HiBell size={20}></HiBell>
+                    </strong>
+                  </div>
+                </Link>
               </li>
             </ul>
+          </div>
+          <div>
+            {user ? (
+              <div className="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                <svg
+                  className="absolute w-12 h-12 text-gray-400 -left-1"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                    clipRule="evenodd"
+                  ></path>
+                </svg>
+              </div>
+            ) : (
+              <img
+                className="w-10 h-10 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500"
+                src="/docs/images/people/profile-picture-5.jpg"
+                alt="Bordered avatar"
+              ></img>
+            )}
           </div>
         </div>
       </nav>

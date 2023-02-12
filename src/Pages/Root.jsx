@@ -4,11 +4,15 @@ import Navbar from "../Components/Navbar";
 
 function Root() {
   return (
-    <div>
-      <Navbar />
-      <Outlet />
-      <Footer />
-    </div>
+    <>
+      <div className="bg-black">
+        <Navbar />
+        <div className="flex flex-wrap items-center justify-between">
+          <Outlet />
+        </div>
+        <Footer />
+      </div>
+    </>
   );
 }
 
