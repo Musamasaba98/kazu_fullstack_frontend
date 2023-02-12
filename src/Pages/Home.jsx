@@ -12,7 +12,7 @@ const apiKey = import.meta.env.VITE_API_KEY;
 const Home = () => {
   const loader = useLoaderData();
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col w-4/5 mx-auto">
       {loader.map((category) => {
         return (
           <>

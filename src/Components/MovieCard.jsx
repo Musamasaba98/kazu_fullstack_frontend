@@ -5,15 +5,12 @@ import { BsPlusLg } from "react-icons/bs";
 
 const MovieCard = ({ movie }) => {
   return (
-    <div className=" md:w-2/5 sm:w-3/5 xs:w-4/5  rounded-lg overflow-hidden md:mt-28 lg:mt-44 xs:ml-5 md:ml-10">
-      <div className="px-6 py-4">
-        <div className="font-extrabold text-5xl text-white mb-6">
+    <div className=" md:pt-5 lg:pt-0  md:mt-28 lg:mt-44 xs:ml-5 md:ml-10">
+      <div className="px-6 py-4 pt-44 lg:pt-0 md:mt-0 w-full md:w-1/2">
+        <div className="font-extrabold text-4xl text-white mb-6">
           {movie.title}
         </div>
-        <p className="text-gray-400 my-3 py-4 font-medium">{`${movie.overview.slice(
-          0,
-          200
-        )}...`}</p>
+
         <div className="flex mt-auto">
           <Button>
             <FaPlayCircle
@@ -30,6 +27,10 @@ const MovieCard = ({ movie }) => {
             My List
           </Button>
         </div>
+        <p className="text-gray-400 my-3 py-4 font-medium">{`${movie.overview.slice(
+          0,
+          300
+        )}...`}</p>
       </div>
     </div>
   );

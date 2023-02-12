@@ -28,11 +28,11 @@ const Movie = () => {
     <>
       <header
         style={{
-          backgroundImage: `linear-gradient(to right,rgb(0, 0, 0,.9) 30%,transparent),linear-gradient(to bottom,rgb(0, 0, 0,.9321) 10%,transparent),url(
-            https://image.tmdb.org/t/p/original${movie.poster_path}
+          backgroundImage: `linear-gradient(to right,rgb(0, 0, 0,.9) 10%,transparent),linear-gradient(to left bottom,rgb(0, 0, 0,.4) 20%,transparent),url(
+            https://image.tmdb.org/t/p/original${movie.backdrop_path}
           )`,
         }}
-        className="w-full  -mt-24  h-60v bg-cover bg-center bg-no-repeat flex item-center justify-start"
+        className="w-full  -mt-44 md:-mt-52 lg:-mt-24 flex justify-center items-center h-70v lg:h-80v bg-cover  bg-center  bg-no-repeat"
       >
         <MovieCard movie={movie} />
       </header>

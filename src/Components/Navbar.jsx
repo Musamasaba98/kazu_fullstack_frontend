@@ -115,10 +115,10 @@ const Navbar = () => {
                       onClick={toggleSearch}
                     >
                       <svg
-                        className="h-6 w-6"
+                        className="h-6 w-6 text-white"
                         fill="none"
                         viewBox="0 0 24 24"
-                        stroke="currentColor"
+                        stroke="white"
                       >
                         <path
                           strokeLinecap="round"
@@ -142,10 +142,10 @@ const Navbar = () => {
                               onClick={toggleSearch}
                             >
                               <svg
-                                className="h-6 w-6 text-gray-400"
+                                className="h-6 w-6 text-black"
                                 fill="none"
                                 viewBox="0 0 24 24"
-                                stroke="currentColor"
+                                stroke="black"
                               >
                                 <path
                                   strokeLinecap="round"

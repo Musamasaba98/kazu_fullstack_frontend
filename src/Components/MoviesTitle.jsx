@@ -3,7 +3,7 @@ import React from "react";
 const MoviesTitle = (props) => {
   return (
     <div
-      className="text-2xl
+      className="text-xl md:text-2xl
       text-gray-400
       font-bold
       uppercase
