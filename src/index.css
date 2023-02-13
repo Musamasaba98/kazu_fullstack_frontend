@@ -1,3 +1,34 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.slick-arrow.slick-prev,
+.slick-arrow.slick-next {
+    background: #df0606;
+    width: 20px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+
+}
+
+.slick-prev {
+    left: 0;
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+    padding-left: .5rem;
+
+}
+
+.slick-next {
+    right: 0;
+    border-top-left-radius: 7px;
+    border-bottom-left-radius: 7px;
+}
+
+.slick-prev::before,
+.slick-next::before {
+    display: none;
+}

@@ -8,6 +8,9 @@ import Home, { loader as homeMovieTvLoader } from "./Pages/Home";
 import Movie from "./Pages/Movie";
 import Search from "./Pages/Search";
 import Category from "./Pages/Category";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Originals from "./Pages/Originals";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: "/movies/:movieId",
         element: <Movie />,
+      },
+      {
+        path: "/tv/:showId",
+        element: <Originals />,
       },
       {
         path: "/:category",

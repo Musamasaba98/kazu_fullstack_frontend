@@ -1,17 +1,27 @@
-import React, { useState } from "react";
-import { Form, Link, useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Form, Link, useParams, useSubmit } from "react-router-dom";
 import Logo from "../assets/images/Logo.svg";
 import { HiOutlineMenuAlt2 } from "react-icons/hi";
 import { HiBell } from "react-icons/hi";
 
 const Navbar = () => {
   const { movieId } = useParams();
+  const submit = useSubmit();
+  const q = "";
   const [navbarOpen, setNavbarOpen] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const toggleSearch = () => {
     setShowSearch(!showSearch);
   };
   const [user, setUser] = useState({});
+  useEffect(() => {
+    document.getElementById("q").value = q;
+  }, [q]);
+  const handleSearch = (e) => {
+    if (e.key === "Enter") {
+      submit(e.currentTarget.form);
+    }
+  };
   return (
     <>
       <nav
@@ -40,7 +50,7 @@ const Navbar = () => {
                 <li className="nav-item">
                   <Link
                     className="px-3  py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                    to="pablo"
+                    to="/"
                   >
                     <i className="fab fa-facebook-square text-lg leading-lg text-white opacity-75"></i>
                     <span className="xl:ml-2 md:text-base sm:text-medium">
@@ -131,11 +141,23 @@ const Navbar = () => {
                     {showSearch && (
                       <div className="absolute top-0 right-0 bg-white shadow-md rounded-lg w-64">
                         <div className="relative">
-                          <Form>
+                          <Form action={`/search?${q}`} role="search">
                             <input
+                              name="q"
+                              id="q"
+                              defaultValue={q}
                               className="w-full px-4 flex-grow text-black py-2 rounded-lg border-2 border-gray-300 focus:outline-none focus:border-gray-500"
                               type="text"
                               placeholder="Search"
+                              onKeyDown={handleSearch}
+                              onChange={(event) => {
+                                const isFirstSearch = q == null;
+                                submit(event.currentTarget.form, {
+                                  replace: !isFirstSearch,
+                                });
+                                if (event.key === "Enter") {
+                                }
+                              }}
                             />
                             <button
                               className="absolute top-0 right-0 mt-2 mr-2"
