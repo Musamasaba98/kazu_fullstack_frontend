@@ -7,7 +7,9 @@ const MoviesTitle = (props) => {
       text-gray-400
       font-bold
       uppercase
-      mx-8"
+      mx-0
+      mb-8
+      "
     >
       {props.children}
     </div>

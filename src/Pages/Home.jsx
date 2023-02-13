@@ -71,7 +71,7 @@ export const loader = async () => {
         title: "CineSphere Originals",
         data: originals.data.results,
       },
-      { title: "Treding", data: trending.data.results },
+      { title: "Trending", data: trending.data.results },
       { title: "Now Playing", data: nowPlaying.data.results },
       { title: "Popular", data: popular.data.results },
       { title: "Top Rated", data: topRated.data.results },

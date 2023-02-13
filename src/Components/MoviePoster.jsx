@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const MoviePoster = ({ movie }) => {
-  console.log(movie);
   return (
     <div className="m-2 w-48 transition-all hover:scale-125">
       <Link to={`/movies/${movie.id}`}>

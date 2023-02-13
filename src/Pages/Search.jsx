@@ -12,8 +12,9 @@ export const loader = async ({ request }) => {
   const url = new URL(request.url);
   const searchParams = new URLSearchParams(url.search);
   const q = await searchParams.get("q");
+  console.log(q);
   const response = await axios.get(
-    `https://api.themoviedb.org/3/search/movie?q=${q}`,
+    `https://api.themoviedb.org/3/search/movie?query=${q}`,
     {
       params: {
         api_key: apiKey,
