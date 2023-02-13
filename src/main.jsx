@@ -6,7 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorPage from "./Pages/ErrorPage";
 import Home, { loader as homeMovieTvLoader } from "./Pages/Home";
 import Movie from "./Pages/Movie";
-import Search from "./Pages/Search";
+import Search, { loader as searchLoader } from "./Pages/Search";
 import Category from "./Pages/Category";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -22,6 +22,7 @@ const router = createBrowserRouter([
       {
         path: "/search",
         element: <Search />,
+        loader: searchLoader,
       },
       {
         path: "/movies/:movieId",

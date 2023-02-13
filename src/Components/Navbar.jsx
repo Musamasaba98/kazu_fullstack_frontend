@@ -15,11 +15,15 @@ const Navbar = () => {
   };
   const [user, setUser] = useState({});
   useEffect(() => {
-    document.getElementById("q").value = q;
+    const input = document.querySelector("input");
+    if (input) {
+      document.getElementById("q").value = q;
+    }
   }, [q]);
   const handleSearch = (e) => {
     if (e.key === "Enter") {
       submit(e.currentTarget.form);
+      setShowSearch(true);
     }
   };
   return (
@@ -138,49 +142,51 @@ const Navbar = () => {
                         />
                       </svg>
                     </button>
-                    {showSearch && (
-                      <div className="absolute top-0 right-0 bg-white shadow-md rounded-lg w-64">
-                        <div className="relative">
-                          <Form action={`/search?${q}`} role="search">
-                            <input
-                              name="q"
-                              id="q"
-                              defaultValue={q}
-                              className="w-full px-4 flex-grow text-black py-2 rounded-lg border-2 border-gray-300 focus:outline-none focus:border-gray-500"
-                              type="text"
-                              placeholder="Search"
-                              onKeyDown={handleSearch}
-                              onChange={(event) => {
-                                const isFirstSearch = q == null;
-                                submit(event.currentTarget.form, {
-                                  replace: !isFirstSearch,
-                                });
-                                if (event.key === "Enter") {
-                                }
-                              }}
-                            />
-                            <button
-                              className="absolute top-0 right-0 mt-2 mr-2"
-                              onClick={toggleSearch}
+                    <div className="absolute top-0 right-0 bg-white shadow-md rounded-lg w-64">
+                      <div className="relative">
+                        <Form action={`/search?${q}`} role="search">
+                          <input
+                            id="q"
+                            name="q"
+                            defaultValue={q}
+                            className={`
+                              w-full px-4 flex-grow text-black py-2
+                               rounded-lg border-2 border-gray-300
+                                focus:outline-none focus:border-gray-500 ${
+                                  showSearch && "hidden"
+                                }`}
+                            type="search"
+                            placeholder="Search"
+                            onChange={(event) => {
+                              const isFirstSearch = q == null;
+                              submit(event.currentTarget.form, {
+                                replace: !isFirstSearch,
+                              });
+                              if (event.key === "Enter") {
+                              }
+                            }}
+                          />
+                          <button
+                            className="absolute top-0 right-0 mt-2 mr-2"
+                            onClick={toggleSearch}
+                          >
+                            <svg
+                              className="h-6 w-6 text-black"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="black"
                             >
-                              <svg
-                                className="h-6 w-6 text-black"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="black"
-                              >
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  strokeWidth="2"
-                                  d="M6 18L18 6M6 6l12 12"
-                                />
-                              </svg>
-                            </button>
-                          </Form>
-                        </div>
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                d="M6 18L18 6M6 6l12 12"
+                              />
+                            </svg>
+                          </button>
+                        </Form>
                       </div>
-                    )}
+                    </div>
                   </div>
                 </Link>
               </li>
