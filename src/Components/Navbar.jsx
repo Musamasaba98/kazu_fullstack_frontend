@@ -12,7 +12,7 @@ import { HiBell } from "react-icons/hi";
 
 const Navbar = () => {
   const { movieId } = useParams();
-  const { q } = useRouteLoaderData("search");
+  const { q } = useRouteLoaderData("search") || { q: "" };
   const submit = useSubmit();
   const [navbarOpen, setNavbarOpen] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
