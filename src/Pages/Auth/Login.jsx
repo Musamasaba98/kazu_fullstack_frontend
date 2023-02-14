@@ -14,7 +14,7 @@ const Login = () => {
           <img src={Logo} alt="logo" className="w-1/2" />
         </div>
         <h3 className="text-2xl text-black font-bold text-center">
-          4k Experiences
+          4k Cinema Experiences
         </h3>
         <Form action="">
           <div className="mt-4 text-black">
