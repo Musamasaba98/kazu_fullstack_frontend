@@ -11,6 +11,9 @@ import Category from "./Pages/Category";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Originals from "./Pages/Originals";
+import Index from "./Pages/Auth/Index";
+import Register from "./Pages/Auth/Register";
+import Login from "./Pages/Auth/Login";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +43,20 @@ const router = createBrowserRouter([
       {
         path: "/:category",
         element: <Category />,
+      },
+    ],
+  },
+  {
+    path: "/account",
+    element: <Index />,
+    children: [
+      {
+        index: true,
+        element: <Login />,
+      },
+      {
+        path: "registration",
+        element: <Register />,
       },
     ],
   },

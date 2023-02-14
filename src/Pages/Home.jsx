@@ -10,22 +10,19 @@ const baseURL = "https://api.themoviedb.org/3/";
 const apiKey = import.meta.env.VITE_API_KEY;
 
 const Home = () => {
-  const loader = useLoaderData();
-  console.log(loader);
+  const loader = useLoaderData() || [{}];
   return (
     <div className="flex flex-col w-4/5 mx-auto">
       {loader.map((category) => {
         return (
-          <>
-            <MoviesContainer key={crypto.randomUUID()}>
-              <MoviesTitle>{category.title}</MoviesTitle>
-              <MoviesRow key={crypto.randomUUID()}>
-                {category.data.map((data) => {
-                  return <MoviePoster movie={data} />;
-                })}
-              </MoviesRow>
-            </MoviesContainer>
-          </>
+          <MoviesContainer key={category.title}>
+            <MoviesTitle>{category.title}</MoviesTitle>
+            <MoviesRow key={crypto.randomUUID()}>
+              {category.data.map((data) => {
+                return <MoviePoster key={data.id} movie={data} />;
+              })}
+            </MoviesRow>
+          </MoviesContainer>
         );
       })}
     </div>
