@@ -18,11 +18,16 @@ const router = createBrowserRouter([
     element: <Root />,
     errorElement: <ErrorPage />,
     children: [
-      { index: true, element: <Home />, loader: homeMovieTvLoader },
+      {
+        index: true,
+        element: <Home />,
+        loader: homeMovieTvLoader,
+      },
       {
         path: "/search",
         element: <Search />,
         loader: searchLoader,
+        id: "search",
       },
       {
         path: "/movies/:movieId",
