@@ -7,6 +7,7 @@ const apiKey = import.meta.env.VITE_API_KEY;
 const Search = () => {
   const navigate = useNavigate();
   const { content, q } = useLoaderData();
+
   if (q === "") {
     navigate(-1);
   }
@@ -33,6 +34,7 @@ export const loader = async ({ request }) => {
     }
   );
   const content = await response.data;
+  console.log(content);
   return { content, q };
 };
 export default Search;
