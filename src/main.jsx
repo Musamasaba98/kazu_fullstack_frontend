@@ -11,6 +11,12 @@ import Category from "./Pages/Category";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Originals from "./Pages/Originals";
+import { Provider } from "react-redux";
+import persistStore from "redux-persist/es/persistStore";
+import { PersistGate } from "redux-persist/integration/react";
+import { store } from "./Store/store";
+
+let persistor = persistStore(store);
 
 const router = createBrowserRouter([
   {
@@ -47,6 +53,10 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <PersistGate persistor={persistor}>
+        <RouterProvider router={router} />
+      </PersistGate>
+    </Provider>
   </React.StrictMode>
 );
