@@ -11,18 +11,23 @@ const authSlice = createSlice({
         registerUser: (state, action) => {
             const newUser = action.payload
             const existingUser = state.users.findIndex((item) => item.email === newUser.email)
-            if (!existingUser) {
+            if (existingUser === -1) {
                 state.users = [newUser, ...state.users]
             }
         },
         loginUser: (state, action) => {
             const user = action.payload
-            state.user = user
-            state.isLoggedIn = true
+            const existingUser = state.users.find((item) => item.email === user.email)
+            if (existingUser) {
+                state.user = user
+                state.isLoggedIn = true
+            }
+
         },
         logoutUser: (state, action) => {
             const user = action.payload
             state.isLoggedIn = false
+            state.user = null
         },
         deleteUser: (state, action) => {
             const user = action.payload

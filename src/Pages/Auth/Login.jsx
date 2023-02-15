@@ -1,9 +1,25 @@
-import React from "react";
-import { Form, Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Form, Link, useActionData, useNavigate } from "react-router-dom";
 import Logo from "../../assets/images/Logo.svg";
 import background from "../../assets/images/background.jpg";
+import { authActions } from "../../Store/authSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const Login = () => {
+  const { loginUser } = authActions;
+  const user = useSelector((state) => {
+    state.user;
+  });
+  const navigate = useNavigate();
+  const data = useActionData();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (data) {
+      dispatch(loginUser(data));
+      navigate("/");
+    }
+  }, [data]);
+
   return (
     <div
       className="flex items-center bg-center justify-center min-h-screen"
@@ -16,13 +32,14 @@ const Login = () => {
         <h3 className="text-2xl text-black font-bold text-center">
           4k Cinema Experiences
         </h3>
-        <Form action="">
+        <Form method="post">
           <div className="mt-4 text-black">
             <div className="mt-4">
               <label className="block" htmlFor="email">
                 Email
               </label>
               <input
+                name="email"
                 type="text"
                 placeholder="Email"
                 className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
@@ -32,6 +49,7 @@ const Login = () => {
               <label className="block">Password</label>
               <input
                 type="password"
+                name="password"
                 placeholder="Password"
                 className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
               />
@@ -54,5 +72,9 @@ const Login = () => {
     </div>
   );
 };
-
+export async function action({ request }) {
+  const formData = await request.formData();
+  const data = Object.fromEntries(formData);
+  return data;
+}
 export default Login;

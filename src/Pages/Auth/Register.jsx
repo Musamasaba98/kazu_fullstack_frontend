@@ -1,9 +1,25 @@
-import React from "react";
-import { Form, Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Form, Link, useActionData, useNavigate } from "react-router-dom";
 import Logo from "../../assets/images/Logo.svg";
 import background from "../../assets/images/background.jpg";
+import { useDispatch } from "react-redux";
+import { authActions } from "../../Store/authSlice";
 
 const Register = () => {
+  const { registerUser } = authActions;
+  const navigate = useNavigate();
+  let data = useActionData();
+  //yup
+
+  //yup
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (data) {
+      dispatch(registerUser(data));
+      navigate("/account");
+    }
+  }, [data]);
+
   return (
     <div
       className="flex items-center bg-center justify-center min-h-screen "
@@ -14,13 +30,14 @@ const Register = () => {
           <img src={Logo} alt="logo" className="w-1/2" />
         </div>
         <h3 className="text-2xl text-black font-bold text-center">Join us</h3>
-        <Form action="">
+        <Form method="post">
           <div className="mt-4 text-black">
             <div>
               <label className="block" htmlFor="Name">
                 Name
               </label>
               <input
+                name="name"
                 type="text"
                 placeholder="Name"
                 className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
@@ -31,6 +48,7 @@ const Register = () => {
                 Email
               </label>
               <input
+                name="email"
                 type="text"
                 placeholder="Email"
                 className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
@@ -39,6 +57,7 @@ const Register = () => {
             <div className="mt-4">
               <label className="block">Password</label>
               <input
+                name="password"
                 type="password"
                 placeholder="Password"
                 className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
@@ -47,6 +66,7 @@ const Register = () => {
             <div className="mt-4">
               <label className="block">Confirm Password</label>
               <input
+                name="confirmPassword"
                 type="password"
                 placeholder="Password"
                 className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
@@ -70,5 +90,9 @@ const Register = () => {
     </div>
   );
 };
-
+export async function action({ request, params }) {
+  const formData = await request.formData();
+  const data = Object.fromEntries(formData);
+  return data;
+}
 export default Register;

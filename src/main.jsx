@@ -15,11 +15,11 @@ import { Provider } from "react-redux";
 import persistStore from "redux-persist/es/persistStore";
 import { PersistGate } from "redux-persist/integration/react";
 import { store } from "./Store/store";
-
+import "tw-elements";
 let persistor = persistStore(store);
 import Index from "./Pages/Auth/Index";
-import Register from "./Pages/Auth/Register";
-import Login from "./Pages/Auth/Login";
+import Register, { action as registerAction } from "./Pages/Auth/Register";
+import Login, { action as loginAction } from "./Pages/Auth/Login";
 
 const router = createBrowserRouter([
   {
@@ -59,10 +59,12 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Login />,
+        action: loginAction,
       },
       {
         path: "registration",
         element: <Register />,
+        action: registerAction,
       },
     ],
   },

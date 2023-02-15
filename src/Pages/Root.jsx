@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { Outlet, useNavigate } from "react-router-dom";
 import Footer from "../Components/Footer";
 import Navbar from "../Components/Navbar";
 
 function Root() {
-  const [user, setUser] = useState(null);
+  const { user } = useSelector((state) => state.user);
   const navigate = useNavigate();
-
+  console.log(user);
   useEffect(() => {
     if (user === null) {
       navigate("/account");
     }
-  }, [user]);
+  }, []);
 
   return (
     <>

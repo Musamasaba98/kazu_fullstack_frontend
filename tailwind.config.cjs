@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./index.html", "./src/**/*.{jsx,js}"],
+  content: ["./index.html", "./src/**/*.{jsx,js}", './node_modules/tw-elements/dist/js/**/*.js'],
   theme: {
     extend: {
       height: {
@@ -17,5 +17,7 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('tw-elements/dist/plugin')
+  ],
 };
