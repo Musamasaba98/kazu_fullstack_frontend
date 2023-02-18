@@ -20,7 +20,6 @@
     "redux-persist": "^6.0.0",
     "slick-carousel": "^1.8.1",
     "slugify": "^1.6.5",
-    "tw-elements": "^1.0.0-alpha13",
     "yup": "^1.0.0"
   },
   "devDependencies": {
