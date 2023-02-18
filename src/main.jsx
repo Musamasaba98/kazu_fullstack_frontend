@@ -15,7 +15,6 @@ import { Provider } from "react-redux";
 import persistStore from "redux-persist/es/persistStore";
 import { PersistGate } from "redux-persist/integration/react";
 import { store } from "./Store/store";
-import "tw-elements";
 let persistor = persistStore(store);
 import Index from "./Pages/Auth/Index";
 import Register, { action as registerAction } from "./Pages/Auth/Register";

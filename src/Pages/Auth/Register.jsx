@@ -4,13 +4,14 @@ import Logo from "../../assets/images/Logo.svg";
 import background from "../../assets/images/background.jpg";
 import { useDispatch } from "react-redux";
 import { authActions } from "../../Store/authSlice";
+import { userSchema } from "../../Validations/UserValidation";
 
 const Register = () => {
   const { registerUser } = authActions;
   const navigate = useNavigate();
   let data = useActionData();
   //yup
-
+ userSchema
   //yup
   const dispatch = useDispatch();
   useEffect(() => {
