@@ -1,17 +1,30 @@
 import React, { useEffect } from "react";
-import { Form, Link, useActionData, useNavigate } from "react-router-dom";
+import { Link, useActionData, useNavigate, useSubmit } from "react-router-dom";
 import Logo from "../../assets/images/Logo.svg";
 import background from "../../assets/images/background.jpg";
 import { useDispatch } from "react-redux";
 import { authActions } from "../../Store/authSlice";
-import { userSchema } from "../../Validations/UserValidation";
+import { userValidate } from "../../Validations/UserValidation";
+import { useFormik } from "formik";
 
 const Register = () => {
+  const submit = useSubmit();
   const { registerUser } = authActions;
   const navigate = useNavigate();
   let data = useActionData();
   //yup
- userSchema
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    },
+    validationSchema: userValidate,
+    onSubmit: (values) => {
+      submit(values, { method: "post" });
+    },
+  });
   //yup
   const dispatch = useDispatch();
   useEffect(() => {
@@ -31,7 +44,7 @@ const Register = () => {
           <img src={Logo} alt="logo" className="w-1/2" />
         </div>
         <h3 className="text-2xl text-black font-bold text-center">Join us</h3>
-        <Form method="post">
+        <form onSubmit={formik.handleSubmit}>
           <div className="mt-4 text-black">
             <div>
               <label className="block" htmlFor="Name">
@@ -39,43 +52,72 @@ const Register = () => {
               </label>
               <input
                 name="name"
+                id="name"
                 type="text"
+                value={formik.values.name}
+                onChange={formik.handleChange}
                 placeholder="Name"
                 className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
               />
+              {formik.touched.name ? (
+                <span style={{ color: "red" }}>{formik.errors.name}</span>
+              ) : null}
             </div>
             <div className="mt-4">
               <label className="block" htmlFor="email">
                 Email
               </label>
               <input
+                id="email"
                 name="email"
+                value={formik.values.email}
+                onChange={formik.handleChange}
                 type="text"
                 placeholder="Email"
                 className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
               />
+              {formik.touched.email && formik.errors.email ? (
+                <span style={{ color: "red" }}>{formik.errors.email}</span>
+              ) : null}
             </div>
             <div className="mt-4">
               <label className="block">Password</label>
               <input
+                id="password"
                 name="password"
+                value={formik.values.password}
                 type="password"
+                onChange={formik.handleChange}
                 placeholder="Password"
                 className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
               />
+              {formik.touched.password && formik.errors.password ? (
+                <span style={{ color: "red" }}>{formik.errors.password}</span>
+              ) : null}
             </div>
             <div className="mt-4">
               <label className="block">Confirm Password</label>
               <input
+                id="confirmPassword"
                 name="confirmPassword"
                 type="password"
+                value={formik.values.confirmPassword}
+                onChange={formik.handleChange}
                 placeholder="Password"
                 className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"
               />
+              {formik.touched.confirmPassword &&
+              formik.errors.confirmPassword ? (
+                <span style={{ color: "red" }}>
+                  {formik.errors.confirmPassword}
+                </span>
+              ) : null}
             </div>
-            <span className="text-xs text-red-400">Password must be same!</span>
             <div className="flex">
-              <button className="w-full px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900">
+              <button
+                type="submit"
+                className="w-full px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900"
+              >
                 Create Account
               </button>
             </div>
@@ -86,14 +128,18 @@ const Register = () => {
               </Link>
             </div>
           </div>
-        </Form>
+        </form>
       </div>
     </div>
   );
 };
 export async function action({ request, params }) {
-  const formData = await request.formData();
-  const data = Object.fromEntries(formData);
-  return data;
+  try {
+    const formData = await request.formData();
+    const data = Object.fromEntries(formData);
+    return data;
+  } catch (error) {
+    return { error: "There was an error creating your account." };
+  }
 }
 export default Register;
