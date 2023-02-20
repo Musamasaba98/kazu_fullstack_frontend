@@ -19,14 +19,15 @@ const Navbar = () => {
   const submit = useSubmit();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [navbarOpen, setNavbarOpen] = useState(false);
-  const [showSearch, setShowSearch] = useState(false);
+  const [navbarOpen, setNavbarOpen] = useState(true);
+  const [showSearch, setShowSearch] = useState(true);
   const [showAccount, setShowAccount] = useState(false);
   const toggleSearch = () => {
     setShowSearch(!showSearch);
   };
   const { user } = useSelector((state) => state.user);
   const { logoutUser } = authActions;
+
   useEffect(() => {
     const input = document.querySelector("input");
     if (input) {
@@ -49,9 +50,102 @@ const Navbar = () => {
         }`}
       >
         <div className="container w-full px-4 flex md:mx-auto xs:ml-5 min-w-fit gap-1  items-center justify-between">
-          <div className="text-white font lg:hidden">
+          <div
+            className="text-white font lg:hidden"
+            onClick={() => setNavbarOpen(!navbarOpen)}
+          >
             <HiOutlineMenuAlt2 size={25} />
           </div>
+          {/* mobile menu */}
+          <div
+            className={`absolute top-20 w-full h-100v bg-transparent ${
+              navbarOpen ? "hidden" : ""
+            }`}
+          >
+            <div className="bg-white w-40">
+              <ul className="flex flex-col py-5 px-auto  list-none ml-auto">
+                <li className="nav-item">
+                  <Link
+                    className="px-3  py-2 flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-75"
+                    to="/"
+                  >
+                    <span
+                      className="xl:ml-2 md:text-base sm:text-medium"
+                      onClick={() => setNavbarOpen(!navbarOpen)}
+                    >
+                      Home
+                    </span>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link
+                    className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-75"
+                    to="/"
+                  >
+                    <span
+                      onClick={() => setNavbarOpen(!navbarOpen)}
+                      className="xl:ml-2 md:text-base sm:text-medium"
+                    >
+                      TV Shows
+                    </span>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link
+                    className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-75"
+                    to="/"
+                  >
+                    <span
+                      onClick={() => setNavbarOpen(!navbarOpen)}
+                      className="xl:ml-2 md:text-base sm:text-medium"
+                    >
+                      Movies
+                    </span>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link
+                    className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-75"
+                    to="/"
+                  >
+                    <span
+                      onClick={() => setNavbarOpen(!navbarOpen)}
+                      className="xl:ml-2 md:text-base sm:text-medium"
+                    >
+                      New & Popular
+                    </span>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link
+                    className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-75"
+                    to="/"
+                  >
+                    <span
+                      onClick={() => setNavbarOpen(!navbarOpen)}
+                      className="xl:ml-2 md:text-base sm:text-medium"
+                    >
+                      My List
+                    </span>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link
+                    className="px-3  py-2 flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-75"
+                    to="pablo"
+                  >
+                    <span
+                      onClick={() => setNavbarOpen(!navbarOpen)}
+                      className="xl:ml-2 md:text-base sm:text-medium"
+                    >
+                      KIDS
+                    </span>
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+          {/* mobile menu */}
           <div className="relative flex justify-between md:gap-0 item-center">
             <Link
               className="text-sm font-bold leading-relaxed inline-block lg:mr-4  py-2 whitespace-nowrap uppercase text-white"
@@ -59,12 +153,7 @@ const Navbar = () => {
             >
               <img src={Logo} alt="chatbot" className="w-36" />
             </Link>
-            <div
-              className={
-                "lg:flex flex-grow items-center" +
-                (navbarOpen ? " flex" : " hidden")
-              }
-            >
+            <div className={"lg:flex flex-grow items-center hidden md:visible"}>
               <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
                 <li className="nav-item">
                   <Link
@@ -197,9 +286,7 @@ const Navbar = () => {
             </div>
 
             <div
-              className={
-                "lg:flex  items-center" + (navbarOpen ? " flex" : " hidden")
-              }
+              className={"lg:flex  items-center hidden md:visible"}
               id="example-navbar-danger"
             >
               <ul className="flex flex-col lg:flex-row list-none lg:ml-auto justify-between items-center">
@@ -231,7 +318,6 @@ const Navbar = () => {
               </ul>
             </div>
             <div>
-              {/* beginning */}
               <div
                 className="flex justify-center cursor-pointer"
                 onClick={handleAccount}
@@ -320,7 +406,6 @@ const Navbar = () => {
                   </div>
                 </div>
               </div>
-              {/* {helll} */}
             </div>
           </div>
         </div>
