@@ -45,7 +45,6 @@ export const loader = async ({ request }) => {
     }
   );
   const content = await response.data;
-  console.log(content);
   return { content, q };
 };
 export default Search;

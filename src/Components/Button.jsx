@@ -4,15 +4,8 @@ const Button = ({ children }) => {
   return (
     <button
       className="cursor-pointer
-    font-bold
-    rounded
-    px-8
-    flex
-    items-center
-    py-2
-    hover:text-black
-    transition-all
-    mr-2 bg-gray-800 text-white hover:bg-white"
+mr-2
+    bg-white text-gray-800 font-bold rounded border-b-2 border-red-500 hover:border-red-600 hover:bg-red-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center"
     >
       {children}
     </button>

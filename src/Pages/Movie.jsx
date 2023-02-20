@@ -1,29 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useLoaderData, useParams } from "react-router-dom";
 import MovieCard from "../Components/MovieCard";
 import axios from "axios";
 
 const Movie = () => {
-  const { movieId } = useParams();
-  const [movie, setMovie] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await axios(
-        `https://api.themoviedb.org/3/movie/${movieId}?api_key=${
-          import.meta.env.VITE_API_KEY
-        }`
-      );
-      setMovie(result.data);
-    };
-
-    fetchData();
-  }, [movieId]);
-
-  if (!movie) {
-    return <div>Loading...</div>;
-  }
-
+  const movie = useLoaderData();
   return (
     <>
       <header
@@ -36,12 +17,25 @@ const Movie = () => {
             }
           )`,
         }}
-        className="w-full  -mt-44 md:-mt-52 lg:-mt-24 flex justify-center items-center h-70v lg:h-80v bg-cover  bg-center  bg-no-repeat"
+        className="w-full  -mt-44 md:-mt-52 lg:-mt-24 flex justify-center md:justify-start pl-0 xl:pl-inherit  items-center h-70v lg:h-80v bg-cover  bg-center  bg-no-repeat"
       >
         <MovieCard movie={movie} />
       </header>
     </>
   );
 };
-
+export const loader = async ({ params }) => {
+  const movieId = params.movieId;
+  try {
+    const result = await axios(
+      `https://api.themoviedb.org/3/movie/${movieId}?api_key=${
+        import.meta.env.VITE_API_KEY
+      }`
+    );
+    console.log(result.data);
+    return result.data;
+  } catch (error) {
+    return { error: `${error.message}` };
+  }
+};
 export default Movie;
