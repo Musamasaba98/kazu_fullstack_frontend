@@ -19,6 +19,7 @@ let persistor = persistStore(store);
 import Index from "./Pages/Auth/Index";
 import Register, { action as registerAction } from "./Pages/Auth/Register";
 import Login, { action as loginAction } from "./Pages/Auth/Login";
+import MyList from "./Pages/MyList";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
         element: <Search />,
         loader: searchLoader,
         id: "search",
+      },
+      {
+        path: "/mylist",
+        element: <MyList />,
       },
       {
         path: "/movies/:movieId",

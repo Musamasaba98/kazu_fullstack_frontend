@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useLoaderData, useParams } from "react-router-dom";
+import React from "react";
+import { useLoaderData } from "react-router-dom";
 import MovieCard from "../Components/MovieCard";
 import axios from "axios";
 
@@ -30,9 +30,9 @@ export const loader = async ({ params }) => {
     const result = await axios(
       `https://api.themoviedb.org/3/movie/${movieId}?api_key=${
         import.meta.env.VITE_API_KEY
-      }`
+      }&append_to_response=credits`
     );
-    console.log(result.data);
+
     return result.data;
   } catch (error) {
     return { error: `${error.message}` };
