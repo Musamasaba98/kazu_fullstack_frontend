@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { myListActions } from "../Store/myListSlice";
+import { myListActions } from "../Store/features/myListSlice";
 import Button from "./Button";
 
 const MyListCard = ({ item }) => {

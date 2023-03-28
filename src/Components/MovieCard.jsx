@@ -2,7 +2,7 @@ import React from "react";
 import { FaPlayCircle } from "react-icons/fa";
 import Button from "./Button";
 import { BsDashLg, BsPlusLg } from "react-icons/bs";
-import { myListActions } from "../Store/myListSlice";
+import { myListActions } from "../Store/features/myListSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const MovieCard = ({ movie }) => {

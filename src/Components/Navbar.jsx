@@ -11,7 +11,8 @@ import Logo from "../assets/images/Logo.svg";
 import { HiOutlineMenuAlt2 } from "react-icons/hi";
 import { HiBell } from "react-icons/hi";
 import { useDispatch, useSelector } from "react-redux";
-import { authActions } from "../Store/authSlice";
+import { userActions } from "../Store/features/userSlice";
+import { useLogoutUserMutation } from "../Store/api/authApi";
 
 const Navbar = () => {
   const { movieId } = useParams();
@@ -26,8 +27,8 @@ const Navbar = () => {
     setShowSearch(!showSearch);
   };
   const { user } = useSelector((state) => state.user);
-  const { logoutUser } = authActions;
-
+  const { logout } = userActions;
+  const [logoutUser, { isLoading: loading }] = useLogoutUserMutation();
   useEffect(() => {
     const input = document.querySelector("input");
     if (input) {
@@ -39,7 +40,8 @@ const Navbar = () => {
     setShowAccount(!showAccount);
   };
   const handleLogout = () => {
-    dispatch(logoutUser(user));
+    logoutUser();
+    dispatch(logout());
     navigate("/account");
   };
   return (

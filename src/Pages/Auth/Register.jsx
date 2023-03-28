@@ -2,14 +2,14 @@ import React, { useEffect } from "react";
 import { Link, useActionData, useNavigate, useSubmit } from "react-router-dom";
 import Logo from "../../assets/images/Logo.svg";
 import background from "../../assets/images/background.jpg";
-import { useDispatch } from "react-redux";
-import { authActions } from "../../Store/authSlice";
 import { userValidate } from "../../Validations/UserValidation";
 import { useFormik } from "formik";
+import { useRegisterUserMutation } from "../../Store/api/authApi";
 
 const Register = () => {
   const submit = useSubmit();
-  const { registerUser } = authActions;
+  const [registerUser, { isLoading: loading }] = useRegisterUserMutation();
+
   const navigate = useNavigate();
   let data = useActionData();
   //yup
@@ -26,10 +26,10 @@ const Register = () => {
     },
   });
   //yup
-  const dispatch = useDispatch();
+
   useEffect(() => {
     if (data) {
-      dispatch(registerUser(data));
+      registerUser(data);
       navigate("/account");
     }
   }, [data]);
