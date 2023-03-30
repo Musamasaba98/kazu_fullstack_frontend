@@ -1,6 +1,7 @@
 import { apiSlice } from "./apiSlice";
 import { userApi } from "./userApi";
 
+
 export const authApi = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         registerUser: builder.mutation({
@@ -17,19 +18,21 @@ export const authApi = apiSlice.injectEndpoints({
                 body: data,
                 credentials: 'include'
             }),
-            async onQueryStarted(args, { dispatch, queryFulfilled }) {
-                try {
-                    await queryFulfilled;
-                    await dispatch(userApi.endpoints.getMe.initiate(null));
-                } catch (error) { }
-            },
+            providesTags: ['User']
         }),
         logoutUser: builder.mutation({
             query: () => ({
                 url: "/logout",
                 method: 'POST',
                 credentials: "include"
-            })
+            }),
+            async onQueryStarted(args, { dispatch, queryFulfilled }) {
+                try {
+                    await queryFulfilled
+                } catch (error) {
+
+                }
+            }
         })
     })
 })

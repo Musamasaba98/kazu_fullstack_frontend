@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { setCredentials, logout } from '../features/userSlice'
 
 const BASE_URL = "http://localhost:10000/api/v1"
 
@@ -7,7 +8,6 @@ const baseQuery = fetchBaseQuery({
     credentials: 'include',
     prepareHeaders: (headers, { getState }) => {
         const token = getState().user.token
-        console.log(token)
         if (token) {
             headers.set("Authorization", `Bearer ${token}`)
         }
@@ -16,27 +16,26 @@ const baseQuery = fetchBaseQuery({
 })
 
 const baseQueryWithReauth = async (args, api, extraOptions) => {
-    let result = await baseQuery(args, api, extraOptions)
-
-    if (result?.error?.originalStatus === 403) {
-        console.log("sending refresh token")
+    let result = await baseQuery(args, api, extraOptions);
+    if (result?.error?.status === 403) {
         //send refresh token to get new access token
-        const refreshResult = await baseQuery('/token', api, extraOptions)
-        console.log(refreshResult)
-        if (refreshResult?.data) {
-            // const user = api.getState().user.user
-            api.dispatch(setCredentials({ ...refreshResult.data }))
-            result = await baseQuery(args, api, extraOptions)
+        const refreshResult = await baseQuery('/token', api, extraOptions);
+        if (refreshResult) {
+            api.dispatch(setCredentials({ accessToken: refreshResult.data.accessToken }))
+            result = await baseQuery(args, api, extraOptions);
         } else {
-            api.dispatch(logOut())
+            api.dispatch(logout());
         }
     }
-    return result
+
+
+    return result;
 }
 
 export const apiSlice = createApi({
     reducerPath: 'authSlice',
     baseQuery: baseQueryWithReauth,
     tagTypes: ['User'],
-    endpoints: builder => ({})
+    endpoints: builder => ({}),
+    keepUnusedDataFor: 0,
 })

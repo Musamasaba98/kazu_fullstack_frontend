@@ -9,8 +9,7 @@ import { apiSlice } from "./api/apiSlice";
 
 const persistConfig = {
     key: "root",
-    storage: storage,
-
+    storage: storage
 }
 const rootReducer = combineReducers({
     myList: myListSlice.reducer,

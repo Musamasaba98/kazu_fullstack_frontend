@@ -6,7 +6,8 @@ import { useFormik } from "formik";
 import { loginValidate } from "../../Validations/UserValidation";
 import { useLoginUserMutation } from "../../Store/api/authApi";
 import { useDispatch } from "react-redux";
-import { userActions } from "../../Store/features/userSlice";
+import { setCredentials } from "../../Store/features/userSlice";
+import Spinner from "../../Components/Spinner";
 
 const Login = () => {
   // const loading = false;
@@ -14,7 +15,6 @@ const Login = () => {
   const submit = useSubmit();
   const navigate = useNavigate();
   const data = useActionData();
-  const { setCredentials } = userActions;
   const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
@@ -30,7 +30,8 @@ const Login = () => {
     const fetchData = async () => {
       if (data) {
         try {
-          const { accessToken } = await loginUser(data).unwrap();
+          const { accessToken, user } = await loginUser(data).unwrap();
+          console.log(user);
           dispatch(setCredentials({ accessToken, data }));
           navigate("/");
         } catch (error) {
@@ -45,7 +46,7 @@ const Login = () => {
   return (
     <>
       {loading ? (
-        "Loading"
+        <Spinner />
       ) : (
         <div
           className="flex items-center bg-center justify-center min-h-screen"
