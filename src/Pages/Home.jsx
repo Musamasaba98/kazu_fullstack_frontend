@@ -6,6 +6,7 @@ import MoviesRow from "../Components/MoviesRow";
 import MoviesTitle from "../Components/MoviesTitle";
 import { myFetch } from "../Store/api/apiSlice";
 
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 const Home = () => {
   const loader = useLoaderData() || [{}];
   console.log(loader);
@@ -29,7 +30,7 @@ const Home = () => {
 };
 export const loader = async () => {
   try {
-    const response = await myFetch("http://localhost:10000/api/v1/movies", {
+    const response = await myFetch(`${BASE_URL}/movies`, {
       method: "GET",
     })
       .then((response) => response.json())
