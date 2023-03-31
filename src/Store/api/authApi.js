@@ -1,14 +1,14 @@
 import { apiSlice } from "./apiSlice";
-import { userApi } from "./userApi";
 
 
 export const authApi = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         registerUser: builder.mutation({
-            query: (user) => ({
+            query: (data) => ({
                 url: `/signup`,
                 method: "POST",
-                body: user
+                // headers: { "Content-Type": "multipart/form-data", boundary: 'MyBoundary' },
+                body: data
             })
         }),
         loginUser: builder.mutation({
@@ -17,8 +17,7 @@ export const authApi = apiSlice.injectEndpoints({
                 method: 'POST',
                 body: data,
                 credentials: 'include'
-            }),
-            providesTags: ['User']
+            })
         }),
         logoutUser: builder.mutation({
             query: () => ({

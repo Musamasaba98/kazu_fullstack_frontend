@@ -7,10 +7,8 @@ const MoviePoster = ({ movie }) => {
       <Link to={`/movies/${movie.id}`}>
         <img
           className="w-full sm:w-[calc(100%)]  md:w-4/5 lg:w-full"
-          src={`https://image.tmdb.org/t/p/w300${
-            movie.poster_path || movie.backdrop_path
-          }`}
-          alt={movie.name}
+          src={movie.coverUrl}
+          alt={movie.title}
         />
       </Link>
     </div>

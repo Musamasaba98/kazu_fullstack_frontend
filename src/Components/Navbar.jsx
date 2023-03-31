@@ -8,17 +8,19 @@ import {
   useSubmit,
 } from "react-router-dom";
 import Logo from "../assets/images/Logo.svg";
-import { HiOutlineMenuAlt2 } from "react-icons/hi";
+import { HiOutlineMenuAlt2, HiOutlinePlusCircle } from "react-icons/hi";
 import { HiBell } from "react-icons/hi";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { logout } from "../Store/features/userSlice";
 import { useLogoutUserMutation } from "../Store/api/authApi";
+import { useLazyGetMeQuery } from "../Store/api/userApi";
 
 const Navbar = ({ user }) => {
   const { movieId } = useParams();
   const { q } = useRouteLoaderData("search") || { q: "" };
   const submit = useSubmit();
   const navigate = useNavigate();
+  const [getMe] = useLazyGetMeQuery();
   const dispatch = useDispatch();
   const [navbarOpen, setNavbarOpen] = useState(true);
   const [showSearch, setShowSearch] = useState(true);
@@ -40,6 +42,7 @@ const Navbar = ({ user }) => {
   const handleLogout = () => {
     logoutUser();
     dispatch(logout());
+    getMe(undefined, { force: true });
     navigate("/account");
   };
   return (
@@ -130,19 +133,6 @@ const Navbar = ({ user }) => {
                       </span>
                     </Link>
                   </li>
-                  <li className="nav-item">
-                    <Link
-                      className="px-3  py-2 flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-75"
-                      to="pablo"
-                    >
-                      <span
-                        onClick={() => setNavbarOpen(!navbarOpen)}
-                        className="xl:ml-2 md:text-base sm:text-medium"
-                      >
-                        KIDS
-                      </span>
-                    </Link>
-                  </li>
                 </ul>
               </div>
             </div>
@@ -217,7 +207,7 @@ const Navbar = ({ user }) => {
               </div>
             </div>
             <div className="flex justify-center gap-5">
-              <div className="relative">
+              <div className="relative flex items-center gap-3">
                 <button
                   className={`text-gray-500 hover:text-gray-600 pt-3 ${
                     showSearch ? "" : "hidden"
@@ -225,7 +215,7 @@ const Navbar = ({ user }) => {
                   onClick={toggleSearch}
                 >
                   <svg
-                    className="h-6 w-6 text-white"
+                    className="h-8 w-8 text-white"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="white"
@@ -239,7 +229,7 @@ const Navbar = ({ user }) => {
                   </svg>
                 </button>
                 <div className="absolute top-14 -right-14 lg:right-0 ml-10  xl:top-0 bg-white shadow-md rounded-lg w-64">
-                  <div className="relative">
+                  <div className="relative ">
                     <Form action={`/search?${q}`} role="search">
                       <input
                         id="q"
@@ -285,6 +275,9 @@ const Navbar = ({ user }) => {
                     </Form>
                   </div>
                 </div>
+                <span className="px-2 inline-block text-white pt-2">
+                  <HiOutlinePlusCircle size={30} />
+                </span>
               </div>
 
               <div
@@ -292,16 +285,6 @@ const Navbar = ({ user }) => {
                 id="example-navbar-danger"
               >
                 <ul className="flex flex-col lg:flex-row list-none lg:ml-auto justify-between items-center">
-                  <li className="nav-item">
-                    <Link
-                      className="px-1 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                      to="pablo"
-                    >
-                      <span className="ml-2 md:text-base sm:text-medium">
-                        KIDS
-                      </span>
-                    </Link>
-                  </li>
                   <li className="nav-item">
                     <Link
                       className="px-2 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
@@ -321,7 +304,7 @@ const Navbar = ({ user }) => {
               </div>
               <div>
                 <div
-                  className="flex justify-center cursor-pointer"
+                  className="flex justify-center items-center cursor-pointer"
                   onClick={handleAccount}
                 >
                   <div>

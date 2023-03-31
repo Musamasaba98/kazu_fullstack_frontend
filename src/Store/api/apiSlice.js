@@ -31,11 +31,25 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
 
     return result;
 }
-
+// Create a custom fetch function that uses the RTK Query API instance to handle expired access tokens
+export const myFetch = async (url, options = {}) => {
+    const response = await fetch(url, options);
+    if (response.status === 401) {
+        // If the response status is 401 (Unauthorized), the access token has expired
+        // Refresh the access token and retry the original request with the new token
+        const { data } = await api.endpoints.refreshTokenMutation(); // call an RTK Query mutation to refresh the access token
+        setToken(data.accessToken); // save the new access token to the store
+        const newOptions = { ...options };
+        const headers = new Headers(newOptions.headers || {});
+        headers.set('Authorization', `Bearer ${data.accessToken}`);
+        newOptions.headers = headers;
+        return fetch(url, newOptions);
+    }
+    return response;
+};
 export const apiSlice = createApi({
     reducerPath: 'authSlice',
     baseQuery: baseQueryWithReauth,
-    tagTypes: ['User'],
     endpoints: builder => ({}),
     keepUnusedDataFor: 0,
 })

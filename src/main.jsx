@@ -17,7 +17,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import { store } from "./Store/store";
 let persistor = persistStore(store);
 import Index from "./Pages/Auth/Index";
-import Register, { action as registerAction } from "./Pages/Auth/Register";
+import Register from "./Pages/Auth/Register";
 import Login, { action as loginAction } from "./Pages/Auth/Login";
 import MyList from "./Pages/MyList";
 
@@ -69,7 +69,6 @@ const router = createBrowserRouter([
       {
         path: "registration",
         element: <Register />,
-        action: registerAction,
       },
     ],
   },

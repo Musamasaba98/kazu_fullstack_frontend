@@ -1,16 +1,15 @@
-import axios from "axios";
 import React from "react";
 import { useLoaderData } from "react-router-dom";
 import MoviePoster from "../Components/MoviePoster";
 import MoviesContainer from "../Components/MoviesContainer";
 import MoviesRow from "../Components/MoviesRow";
 import MoviesTitle from "../Components/MoviesTitle";
-
-const baseURL = "https://api.themoviedb.org/3/";
-const apiKey = import.meta.env.VITE_API_KEY;
+import { myFetch } from "../Store/api/apiSlice";
 
 const Home = () => {
   const loader = useLoaderData() || [{}];
+  console.log(loader);
+  // console.log(loader);
   return (
     <div className="flex flex-col w-4/5 mx-auto">
       {loader.map((category) => {
@@ -30,50 +29,18 @@ const Home = () => {
 };
 export const loader = async () => {
   try {
-    const [originals, trending, nowPlaying, popular, topRated, upcoming] =
-      await Promise.all([
-        axios.get(`${baseURL}discover/tv`, {
-          params: {
-            api_key: apiKey,
-          },
-        }),
-        axios.get(`${baseURL}trending/all/week`, {
-          params: {
-            api_key: apiKey,
-          },
-        }),
-        axios.get(`${baseURL}movie/now_playing`, {
-          params: {
-            api_key: apiKey,
-          },
-        }),
-        axios.get(`${baseURL}movie/popular`, {
-          params: {
-            api_key: apiKey,
-          },
-        }),
-        axios.get(`${baseURL}movie/top_rated`, {
-          params: {
-            api_key: apiKey,
-          },
-        }),
-        axios.get(`${baseURL}movie/upcoming`, {
-          params: {
-            api_key: apiKey,
-          },
-        }),
-      ]);
-
+    const response = await myFetch("http://localhost:10000/api/v1/movies", {
+      method: "GET",
+    })
+      .then((response) => response.json())
+      .then((data) => data)
+      .catch((err) => console.error(err));
+    const { data } = response;
     return [
       {
         title: "CineSphere Originals",
-        data: originals.data.results,
+        data: data,
       },
-      { title: "Trending", data: trending.data.results },
-      { title: "Now Playing", data: nowPlaying.data.results },
-      { title: "Popular", data: popular.data.results },
-      { title: "Top Rated", data: topRated.data.results },
-      { title: "Upcoming", data: upcoming.data.results },
     ];
   } catch (error) {
     console.error(error);
