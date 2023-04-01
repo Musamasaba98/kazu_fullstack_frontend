@@ -30,8 +30,7 @@ const Login = () => {
     const fetchData = async () => {
       if (data) {
         try {
-          const { accessToken, user } = await loginUser(data).unwrap();
-          console.log(user);
+          const { accessToken } = await loginUser(data).unwrap();
           dispatch(setCredentials({ accessToken, data }));
           navigate("/");
         } catch (error) {

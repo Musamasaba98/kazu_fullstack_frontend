@@ -20,7 +20,7 @@ import Index from "./Pages/Auth/Index";
 import Register from "./Pages/Auth/Register";
 import Login, { action as loginAction } from "./Pages/Auth/Login";
 import MyList from "./Pages/MyList";
-import AddIndex from "./Pages/AddMovie/Index";
+import AddIndex, { loader as addMovieLoader } from "./Pages/AddMovie/Index";
 import EditMovie from "./Pages/AddMovie/Edit/Index";
 import Primary from "./Pages/AddMovie/Edit/Primary";
 import Images from "./Pages/AddMovie/Edit/Images";
@@ -60,6 +60,7 @@ const router = createBrowserRouter([
       {
         path: "movies/create",
         element: <AddIndex />,
+        loader: addMovieLoader,
       },
       {
         path: "/movies/:movieId",
@@ -72,23 +73,23 @@ const router = createBrowserRouter([
         children: [
           { index: true, element: <Primary /> },
           {
-            path: "/?name=images",
+            path: "movies/:movieId/edit/?name=images",
             element: <Images />,
           },
           {
-            path: "/?name=genre",
+            path: "movies/:movieId/edit/?name=genre",
             element: <Genre />,
           },
           {
-            path: "/?name=videos",
+            path: "movies/:movieId/edit/?name=videos",
             element: <Video />,
           },
           {
-            path: "/?name=movie_cast",
+            path: "movies/:movieId/edit/?name=movie_cast",
             element: <MovieCast />,
           },
           {
-            path: "/?name=movie_crew",
+            path: "movies/:movieId/edit/?name=movie_crew",
             element: <MovieCrew />,
           },
         ],

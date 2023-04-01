@@ -33,7 +33,7 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
 export const userApi = createApi({
     name: "userApi",
     baseQuery: baseQueryWithReauth,
-    tagTypes: ['User'],
+    tagTypes: ["User"],
     endpoints: (builder) => ({
         getMe: builder.query({
             query: () => ({
@@ -46,4 +46,4 @@ export const userApi = createApi({
     }),
 })
 
-export const { useGetMeQuery, useLazyGetMeQuery } = userApi
+export const { useLazyGetMeQuery } = userApi

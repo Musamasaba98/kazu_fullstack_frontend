@@ -5,12 +5,14 @@ import MoviesContainer from "../Components/MoviesContainer";
 import MoviesRow from "../Components/MoviesRow";
 import MoviesTitle from "../Components/MoviesTitle";
 import { myFetch } from "../Store/api/apiSlice";
+import { useGetMoviesQuery } from "../Store/api/movieApi";
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 const Home = () => {
+  // const { data, isLoading, isSuccess } = useGetMoviesQuery();
+  // isSuccess && console.log(data);
   const loader = useLoaderData() || [{}];
-  console.log(loader);
-  // console.log(loader);
+
   return (
     <div className="flex flex-col w-4/5 mx-auto">
       {loader.map((category) => {

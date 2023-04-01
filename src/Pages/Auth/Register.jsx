@@ -75,7 +75,7 @@ const Register = () => {
             </div>
             <div>
               <label
-                className="bblock uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                 htmlFor="username"
               >
                 Username

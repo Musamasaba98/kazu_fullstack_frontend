@@ -5,7 +5,7 @@ export const authApi = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         registerUser: builder.mutation({
             query: (data) => ({
-                url: `/signup`,
+                url: `user/signup`,
                 method: "POST",
                 // headers: { "Content-Type": "multipart/form-data", boundary: 'MyBoundary' },
                 body: data
@@ -13,7 +13,7 @@ export const authApi = apiSlice.injectEndpoints({
         }),
         loginUser: builder.mutation({
             query: (data) => ({
-                url: '/login',
+                url: 'user/login',
                 method: 'POST',
                 body: data,
                 credentials: 'include'
@@ -21,17 +21,10 @@ export const authApi = apiSlice.injectEndpoints({
         }),
         logoutUser: builder.mutation({
             query: () => ({
-                url: "/logout",
+                url: "user/logout",
                 method: 'POST',
                 credentials: "include"
-            }),
-            async onQueryStarted(args, { dispatch, queryFulfilled }) {
-                try {
-                    await queryFulfilled
-                } catch (error) {
-
-                }
-            }
+            })
         })
     })
 })

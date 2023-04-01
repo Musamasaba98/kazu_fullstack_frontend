@@ -17,7 +17,7 @@ function Root() {
     if (token === null) {
       navigate("/account");
     }
-    getUser(undefined)
+    getUser(undefined, false)
       .unwrap()
       .then((response) => dispatch(setUser(response)))
       .catch(() => dispatch(logout()))

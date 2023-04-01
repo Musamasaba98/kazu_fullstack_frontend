@@ -8,6 +8,7 @@ import { apiSlice } from "./api/apiSlice";
 import { userApi } from "./api/userApi";
 
 
+
 const persistConfig = {
     key: "root",
     storage: storage
@@ -16,7 +17,7 @@ const rootReducer = combineReducers({
     myList: myListSlice.reducer,
     user: userSlice.reducer,
     [apiSlice.reducerPath]: apiSlice.reducer,
-    [userApi.reducerPath]: userApi.reducer
+    [userApi.reducerPath]: userApi.reducer,
 })
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 export const store = configureStore({

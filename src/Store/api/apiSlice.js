@@ -4,7 +4,7 @@ import { setCredentials, logout } from '../features/userSlice'
 const BASE_URL = import.meta.env.VITE_BASE_URL
 
 const baseQuery = fetchBaseQuery({
-    baseUrl: `${BASE_URL}/user`,
+    baseUrl: `${BASE_URL}/`,
     credentials: 'include',
     prepareHeaders: (headers, { getState }) => {
         const token = getState().user.token
@@ -19,7 +19,7 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
     let result = await baseQuery(args, api, extraOptions);
     if (result?.error?.status === 403) {
         //send refresh token to get new access token
-        const refreshResult = await baseQuery('/token', api, extraOptions);
+        const refreshResult = await baseQuery('user/token', api, extraOptions);
         if (refreshResult) {
             api.dispatch(setCredentials({ accessToken: refreshResult.data.accessToken }))
             result = await baseQuery(args, api, extraOptions);
@@ -52,4 +52,5 @@ export const apiSlice = createApi({
     baseQuery: baseQueryWithReauth,
     endpoints: builder => ({}),
     keepUnusedDataFor: 0,
+    tagTypes: ["Movies"]
 })
