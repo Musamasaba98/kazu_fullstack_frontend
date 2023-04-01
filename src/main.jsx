@@ -20,7 +20,10 @@ import Index from "./Pages/Auth/Index";
 import Register from "./Pages/Auth/Register";
 import Login, { action as loginAction } from "./Pages/Auth/Login";
 import MyList from "./Pages/MyList";
-import AddIndex, { loader as addMovieLoader } from "./Pages/AddMovie/Index";
+import AddIndex, {
+  loader as addMovieLoader,
+  action as addMovieAction,
+} from "./Pages/AddMovie/Index";
 import EditMovie from "./Pages/AddMovie/Edit/Index";
 import Primary from "./Pages/AddMovie/Edit/Primary";
 import Images from "./Pages/AddMovie/Edit/Images";
@@ -61,6 +64,7 @@ const router = createBrowserRouter([
         path: "movies/create",
         element: <AddIndex />,
         loader: addMovieLoader,
+        action: addMovieAction,
       },
       {
         path: "/movies/:movieId",

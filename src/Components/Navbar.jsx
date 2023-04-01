@@ -275,8 +275,11 @@ const Navbar = ({ user }) => {
                     </Form>
                   </div>
                 </div>
-                <span className="px-2 inline-block text-white pt-2">
-                  <HiOutlinePlusCircle size={30} />
+
+                <span className="px-2 inline-block text-white pt-2 cursor-pointer">
+                  <Link to="/movies/create">
+                    <HiOutlinePlusCircle size={30} />
+                  </Link>
                 </span>
               </div>
 

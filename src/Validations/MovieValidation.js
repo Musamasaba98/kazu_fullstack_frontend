@@ -2,9 +2,9 @@ import * as yup from 'yup'
 
 export const movieValidate = yup.object({
     title: yup.string().min(2, "Title must be atleast 2 characters").required("Title is required"),
-    genre: yup.string().required("Genre is required"),
+    Genre: yup.string().required("Genre is required"),
     price: yup.number().positive("Price cannot be a negative number").required(),
-    language: yup.string().required("Genre is required"),
+    Language: yup.string().required("Genre is required"),
     description: yup.string().min(36, "Title must be atleast 36 characters").required("Title is required"),
 })
 export const userValidate = yup.object({

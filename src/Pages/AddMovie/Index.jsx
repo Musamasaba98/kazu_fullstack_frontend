@@ -1,51 +1,64 @@
-import React, { useState } from "react";
-import Button from "../../Components/Button";
+import React, { useEffect, useState } from "react";
 import Input from "../../Components/Input";
 import { myFetch } from "../../Store/api/apiSlice";
-import { useLoaderData, useNavigate } from "react-router-dom";
+import {
+  useActionData,
+  useLoaderData,
+  useNavigate,
+  useSubmit,
+} from "react-router-dom";
 import { useFormik } from "formik";
 import { usePostMoviesMutation } from "../../Store/api/movieApi";
+import { movieValidate } from "../../Validations/MovieValidation";
+import Spinner from "../../Components/Spinner";
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 const MovieForm = () => {
+  const submit = useSubmit();
   const loader = useLoaderData();
+  const movieDetails = useActionData();
   const { genreData, languageData } = loader;
-  const [postMovies, { data, isLoading: loading, isError, error, isSuccess }] =
-    usePostMoviesMutation();
+  const [
+    postMovies,
+    { data: movieData, isLoading: loading, isError, error, isSuccess },
+  ] = usePostMoviesMutation();
 
   const navigate = useNavigate();
-
   //yup
   const formik = useFormik({
     initialValues: {
       title: "",
-      language: "",
+      Language: "",
       price: "",
-      genre: "",
+      Genre: "",
       description: "",
     },
-    validationSchema: userValidate,
+    validationSchema: movieValidate,
     onSubmit: (values) => {
-      const formData = new FormData();
-      for (let value in values) {
-        formData.append(value, values[value]);
-      }
-      postMovies(formData);
+      submit(values, { method: "post" });
     },
   });
   useEffect(() => {
-    if (isSuccess) {
-      console.log(data);
-      //   navigate(`/movies/${data}`);
+    if (movieDetails) {
+      console.log(movieDetails);
+      postMovies(movieDetails);
     }
-  }, [isSuccess, data]);
+  }, [movieDetails]);
+  useEffect(() => {
+    if (movieData) {
+      const { data } = movieData;
+      console.log(data);
+      navigate(`/movies/${data.id}`);
+    }
+  }, [movieData]);
   if (loading) return <Spinner />;
+
   return (
     <div className=" w-full flex justify-center ">
       <div className="px-8 py-6  my-4 text-left bg-white opacity-80 md:w-1/3 lg:w-1/3 sm:w-1/3">
         <h3 className="text-2xl text-black font-bold text-center">Add Movie</h3>
-        <form>
+        <form onSubmit={formik.handleSubmit} method="post">
           <div>
             <Input
               label="Title"
@@ -63,14 +76,14 @@ const MovieForm = () => {
           <div className="relative">
             <Input
               label="Genre"
-              name="genre"
-              value={language}
-              onChange={handleLanguageChange}
+              name="Genre"
+              value={formik.values.Genre}
+              onChange={formik.handleChange}
             >
               <select
                 label="Genre"
-                name="genre"
-                value={formik.values.genre}
+                name="Genre"
+                value={formik.values.Genre}
                 onChange={formik.handleChange}
                 className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               >
@@ -89,8 +102,8 @@ const MovieForm = () => {
                 <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
               </svg>
             </div>
-            {formik.touched.genre ? (
-              <span style={{ color: "red" }}>{formik.errors.genre}</span>
+            {formik.touched.Genre ? (
+              <span style={{ color: "red" }}>{formik.errors.Genre}</span>
             ) : null}
           </div>
           <div className="mb-2">
@@ -110,14 +123,14 @@ const MovieForm = () => {
           <div className="relative">
             <Input
               label="Language"
-              name="language"
-              value={formik.values.language}
+              name="Language"
+              value={formik.values.Language}
               onChange={formik.handleChange}
             >
               <select
-                label="language"
-                name="language"
-                value={formik.values.language}
+                label="Language"
+                name="Language"
+                value={formik.values.Language}
                 onChange={formik.handleChange}
                 className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               >
@@ -192,4 +205,13 @@ export const loader = async () => {
     return {};
   }
 };
+export async function action({ request, params }) {
+  try {
+    const formData = await request.formData();
+    const data = Object.fromEntries(formData);
+    return data;
+  } catch (error) {
+    return { error: "There was an error creating your account." };
+  }
+}
 export default MovieForm;

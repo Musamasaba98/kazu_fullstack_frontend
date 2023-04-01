@@ -5,7 +5,6 @@ import MoviesContainer from "../Components/MoviesContainer";
 import MoviesRow from "../Components/MoviesRow";
 import MoviesTitle from "../Components/MoviesTitle";
 import { myFetch } from "../Store/api/apiSlice";
-import { useGetMoviesQuery } from "../Store/api/movieApi";
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 const Home = () => {
