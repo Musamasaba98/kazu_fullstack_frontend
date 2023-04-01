@@ -20,6 +20,21 @@ import Index from "./Pages/Auth/Index";
 import Register from "./Pages/Auth/Register";
 import Login, { action as loginAction } from "./Pages/Auth/Login";
 import MyList from "./Pages/MyList";
+import AddIndex from "./Pages/AddMovie/Index";
+import EditMovie from "./Pages/AddMovie/Edit/Index";
+import Primary from "./Pages/AddMovie/Edit/Primary";
+import Images from "./Pages/AddMovie/Edit/Images";
+import MovieCrew from "./Pages/AddMovie/Edit/MovieCrew";
+import MovieCast from "./Pages/AddMovie/Edit/MovieCast";
+import Video from "./Pages/AddMovie/Edit/Video";
+import Person from "./Pages/AddPerson/Index";
+import EditPerson from "./Pages/AddPerson/Edit";
+import JobTitle from "./Pages/JobTitle/Index";
+import EditJobTitle from "./Pages/JobTitle/Edit";
+import Department from "./Pages/AddDepartment/Index";
+import EditDepartment from "./Pages/AddDepartment/Edit";
+import Genre from "./Pages/Genre/Index";
+import EditGenre from "./Pages/Genre/Edit";
 
 const router = createBrowserRouter([
   {
@@ -43,9 +58,72 @@ const router = createBrowserRouter([
         element: <MyList />,
       },
       {
+        path: "movies/create",
+        element: <AddIndex />,
+      },
+      {
         path: "/movies/:movieId",
         element: <Movie />,
         loader: movieLoader,
+      },
+      {
+        path: "movies/:movieId/edit",
+        element: <EditMovie />,
+        children: [
+          { index: true, element: <Primary /> },
+          {
+            path: "/?name=images",
+            element: <Images />,
+          },
+          {
+            path: "/?name=genre",
+            element: <Genre />,
+          },
+          {
+            path: "/?name=videos",
+            element: <Video />,
+          },
+          {
+            path: "/?name=movie_cast",
+            element: <MovieCast />,
+          },
+          {
+            path: "/?name=movie_crew",
+            element: <MovieCrew />,
+          },
+        ],
+      },
+      {
+        path: "/person/create",
+        element: <Person />,
+      },
+      {
+        path: "/person/create/:personId/edit",
+        element: <EditPerson />,
+      },
+      {
+        path: "/genre/create",
+        element: <Genre />,
+      },
+      {
+        path: "/genre/create/:genreId/edit",
+        element: <EditGenre />,
+      },
+      {
+        path: "/department/create",
+        element: <Department />,
+      },
+      {
+        path: "/department/:departmentId/edit",
+        element: <EditDepartment />,
+      },
+      {
+        path: "/jobtitle/create",
+        element: <JobTitle />,
+      },
+      {
+        path: "/jobtitle/:jobtitleId/edit",
+        element: <EditJobTitle />,
       },
       {
         path: "/tv/:showId",
