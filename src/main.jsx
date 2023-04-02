@@ -76,23 +76,19 @@ const router = createBrowserRouter([
         children: [
           { index: true, element: <Primary /> },
           {
-            path: "movies/:movieId/edit/?name=images",
+            path: "images",
             element: <Images />,
           },
           {
-            path: "movies/:movieId/edit/?name=genre",
-            element: <Genre />,
-          },
-          {
-            path: "movies/:movieId/edit/?name=videos",
+            path: "videos",
             element: <Video />,
           },
           {
-            path: "movies/:movieId/edit/?name=movie_cast",
+            path: "movie_cast",
             element: <MovieCast />,
           },
           {
-            path: "movies/:movieId/edit/?name=movie_crew",
+            path: "movie_crew",
             element: <MovieCrew />,
           },
         ],

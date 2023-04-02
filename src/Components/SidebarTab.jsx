@@ -6,7 +6,12 @@ const SidebarTab = ({ children, ...attributes }) => {
     <li className="pb-3">
       <NavLink
         {...attributes}
-        className={`cursor-pointer mb-2 hover:text-blue-500 transition-all`}
+        className={`cursor-pointer mb-8 transition-all py-2 px-4 ${({
+          isActive,
+          isPending,
+        }) => {
+          isActive ? "active" : isPending ? "pending" : "";
+        }}`}
       >
         {children}
       </NavLink>

@@ -2,9 +2,9 @@ import React from "react";
 
 const Images = () => {
   return (
-    <div>
+    <div className="h-full">
       <h1>Images</h1>
-      <form onSubmit={handleSubmit}>
+      <form>
         <label className="block mb-2 font-bold">Image URL</label>
         <input
           type="text"

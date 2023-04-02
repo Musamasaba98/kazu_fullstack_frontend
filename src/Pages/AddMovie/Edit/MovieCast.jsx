@@ -4,7 +4,7 @@ const MovieCast = () => {
   return (
     <div>
       <h1>MovieCast</h1>
-      <form onSubmit={handleSubmit}>
+      <form>
         <label className="block mb-2 font-bold">Actor Name</label>
         <input
           type="text"

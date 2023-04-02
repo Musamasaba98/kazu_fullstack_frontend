@@ -3,7 +3,7 @@ import React from "react";
 const Primary = () => {
   return (
     <div>
-      <h3 className="text-white">Edit Movie</h3>
+      <h3 className="text-white font-bold ">Edit Movie</h3>
       <form>
         <label className="block mb-2 font-bold">Title</label>
         <input

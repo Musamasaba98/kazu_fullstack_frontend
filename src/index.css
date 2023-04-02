@@ -32,3 +32,16 @@
 .slick-next::before {
     display: none;
 }
+.active{
+    background-color: rgb(37 99 235);
+    color: white;
+    border-radius: .8rem;
+}
+.pending{
+    background-color: gainsboro;
+    color: rgb(37 99 235);
+    border-radius: .8rem;
+}
+.active:hover{
+    color:white;
+}

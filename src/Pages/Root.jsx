@@ -29,7 +29,10 @@ function Root() {
     <>
       <div className="bg-black">
         <Navbar user={user} />
-        <div className="flex flex-wrap items-center justify-between">
+        <div
+          className="flex flex-wrap justify-between md:items-center"
+          style={{ minHeight: "56vh" }}
+        >
           <Outlet />
         </div>
         <Footer />

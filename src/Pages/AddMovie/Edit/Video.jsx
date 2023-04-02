@@ -4,7 +4,7 @@ const Video = () => {
   return (
     <div>
       <h1>Video</h1>
-      <form onSubmit={handleSubmit}>
+      <form>
         <label className="block mb-2 font-bold">Video URL</label>
         <input
           type="text"
