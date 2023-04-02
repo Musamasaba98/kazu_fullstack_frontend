@@ -5,7 +5,7 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorPage from "./Pages/ErrorPage";
 import Home, { loader as homeMovieTvLoader } from "./Pages/Home";
-import Movie, { loader as movieLoader } from "./Pages/Movie";
+import Movie from "./Pages/Movie";
 import Search, { loader as searchLoader } from "./Pages/Search";
 import Category from "./Pages/Category";
 import "slick-carousel/slick/slick.css";
@@ -69,7 +69,6 @@ const router = createBrowserRouter([
       {
         path: "/movies/:movieId",
         element: <Movie />,
-        loader: movieLoader,
       },
       {
         path: "movies/:movieId/edit",
