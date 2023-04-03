@@ -27,7 +27,7 @@ const Movie = () => {
           style={{
             backgroundImage: `linear-gradient(to right,rgb(0, 0, 0,.9) 10%,transparent),
           linear-gradient(to right top,transparent,rgb(0, 0, 0,.4) 1%),url(${
-            movie.coverUrl === null ? coverImage : movie.coverUrl
+            movie.coverUrl === null ? coverImage : movie.imageUrl
           })`,
           }}
           className="w-full  -mt-44 md:-mt-52 lg:-mt-24 flex justify-center md:justify-start pl-0 xl:pl-inherit  items-center h-70v lg:h-80v bg-cover  bg-center  bg-no-repeat"

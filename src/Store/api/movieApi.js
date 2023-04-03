@@ -36,7 +36,7 @@ export const movieApi = apiSlice.injectEndpoints({
             invalidatesTags: (result, error, { id }) => [{ type: 'Movies', id }],
         }),
         deleteMovie: builder.mutation({
-            query(id) {
+            query: (id) => {
                 return {
                     url: `movies/${id}`,
                     method: 'DELETE',
@@ -46,20 +46,35 @@ export const movieApi = apiSlice.injectEndpoints({
             invalidatesTags: (result, error, id) => [{ type: 'Movies', id }],
         }),
         updateMovie: builder.mutation({
-            query(id) {
+            query: ({ movieId, values }) => {
                 return {
-                    url: `movies/${id}`,
+                    url: `movies/${movieId}`,
                     method: 'PATCH',
+                    body: values
                 }
             },
             // Invalidates all queries that subscribe to this Movies `id` only.
-            invalidatesTags: (result, error, id) => [{ type: 'Movies', id }],
+            invalidatesTags: (result, error, movieId) => [{ type: 'Movies', movieId }],
+        }),
+        updateMovieImage: builder.mutation({
+            query: ({ movieId, formData }) => {
+                console.log(formData.get("imageUrl"))
+                return {
+                    url: `movies/${movieId}/edit/images`,
+                    method: 'PATCH',
+                    body: formData,
+                    credentials: "include"
+                }
+            },
+            // Invalidates all queries that subscribe to this Movies `id` only.
+            invalidatesTags: (result, error, movieId) => [{ type: 'Movies', movieId }],
         }),
     }),
 })
 
 export const {
     usePostMoviesMutation,
+    useUpdateMovieImageMutation,
     useGetMoviesQuery,
     useGetMovieQuery,
     useDeleteMovieMutation,

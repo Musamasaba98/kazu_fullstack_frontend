@@ -2,7 +2,8 @@ import axios from "axios";
 import React from "react";
 import { useLoaderData } from "react-router-dom";
 import MoviePoster from "../Components/MoviePoster";
-const apiKey = import.meta.env.VITE_API_KEY;
+import { myFetch } from "../Store/api/apiSlice";
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 const Search = () => {
   const { content, q } = useLoaderData();
@@ -35,15 +36,9 @@ const Search = () => {
 export const loader = async ({ request }) => {
   const url = new URL(request.url);
   const searchParams = new URLSearchParams(url.search);
-  const q = await searchParams.get("q");
-  const response = await axios.get(
-    `https://api.themoviedb.org/3/search/movie?query=${q}`,
-    {
-      params: {
-        api_key: apiKey,
-      },
-    }
-  );
+  const q = searchParams.get("q");
+  const response = await myFetch(`${BASE_URL}/movies/search`);
+  console.log(response);
   const content = await response.data;
   return { content, q };
 };

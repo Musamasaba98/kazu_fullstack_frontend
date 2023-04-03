@@ -25,7 +25,9 @@ import AddIndex, {
   action as addMovieAction,
 } from "./Pages/AddMovie/Index";
 import EditMovie from "./Pages/AddMovie/Edit/Index";
-import Primary from "./Pages/AddMovie/Edit/Primary";
+import Primary, {
+  loader as companyLoader,
+} from "./Pages/AddMovie/Edit/Primary";
 import Images from "./Pages/AddMovie/Edit/Images";
 import MovieCrew from "./Pages/AddMovie/Edit/MovieCrew";
 import MovieCast from "./Pages/AddMovie/Edit/MovieCast";
@@ -74,7 +76,7 @@ const router = createBrowserRouter([
         path: "movies/:movieId/edit",
         element: <EditMovie />,
         children: [
-          { index: true, element: <Primary /> },
+          { index: true, element: <Primary />, loader: companyLoader },
           {
             path: "images",
             element: <Images />,
