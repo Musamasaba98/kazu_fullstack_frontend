@@ -277,14 +277,27 @@ const Navbar = () => {
                     </Form>
                   </div>
                 </div>
-                {console.log(user.role)}
+
                 {user.role === "ADMIN" ||
                   (user.role === "CREATOR" && (
-                    <span className="px-2 inline-block text-white pt-2 cursor-pointer">
-                      <Link to="/movies/create">
-                        <HiOutlinePlusCircle size={30} />
+                    <div>
+                      <Link to={"edit"}>
+                        <Button>
+                          <CiEdit
+                            size={25}
+                            className="text-black hover:text-yellow-400 mr-2"
+                          />
+                          EDIT
+                        </Button>
                       </Link>
-                    </span>
+                      <Button onClick={handleDelete}>
+                        <CiDelete
+                          size={25}
+                          className="text-black hover:text-yellow-400 mr-2"
+                        />
+                        Delete
+                      </Button>
+                    </div>
                   ))}
               </div>
 
