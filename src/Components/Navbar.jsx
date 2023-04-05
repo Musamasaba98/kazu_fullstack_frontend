@@ -81,7 +81,7 @@ const Navbar = ({ user }) => {
                       </span>
                     </Link>
                   </li>
-                  <li className="nav-item">
+                  <li className="nav-item" style={{ pointerEvents: "none" }}>
                     <Link
                       className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-black hover:opacity-75"
                       to="/"
@@ -249,6 +249,7 @@ const Navbar = ({ user }) => {
                             replace: !isFirstSearch,
                           });
                           if (event.key === "Enter") {
+                            submit(event.currentTarget.form);
                           }
                         }}
                       />
@@ -275,12 +276,14 @@ const Navbar = ({ user }) => {
                     </Form>
                   </div>
                 </div>
-
-                <span className="px-2 inline-block text-white pt-2 cursor-pointer">
-                  <Link to="/movies/create">
-                    <HiOutlinePlusCircle size={30} />
-                  </Link>
-                </span>
+                {user.role === "ADMIN" ||
+                  (user.role === "CREATOR" && (
+                    <span className="px-2 inline-block text-white pt-2 cursor-pointer">
+                      <Link to="/movies/create">
+                        <HiOutlinePlusCircle size={30} />
+                      </Link>
+                    </span>
+                  ))}
               </div>
 
               <div
@@ -291,7 +294,7 @@ const Navbar = ({ user }) => {
                   <li className="nav-item">
                     <Link
                       className="px-2 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                      to="pablo"
+                      to="/"
                     >
                       <div className="p-0">
                         <strong className="relative inline-flex items-center  px-2.5 py-1.5 text-xs font-medium">
@@ -356,33 +359,25 @@ const Navbar = ({ user }) => {
                       </span>
                       <ul
                         className={`dropdown-menu max-w-fit absolute right-5
-                           bg-white text-base z-50 float-left py-2 list-none text-left rounded-lg shadow-lg mt-1
+                           bg-white text-base z-50 float-left py-2 px-6 list-none text-left rounded-lg shadow-lg mt-1
                             m-0 bg-clip-padding border-none ${
                               showAccount ? "block" : "hidden"
                             }`}
                       >
                         <li>
                           <Link
-                            className=" dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100
+                            className=" dropdown-item text-sm py-2 px-4 font-bold block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100
                           "
-                            to="/"
+                            to={`cin/${user.username}`}
                           >
                             Profile
                           </Link>
                         </li>
-                        <li>
-                          <Link
-                            className=" dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100
-                          "
-                            to="/"
-                          >
-                            Users avilable now
-                          </Link>
-                        </li>
+
                         <hr className="h-0 my-2 border border-solid border-t-0 border-gray-700 opacity-25" />
                         <li>
                           <span
-                            className=" dropdown-item text-sm  py-2 px-4 font-normal block w-full whitespace-nowrap
+                            className=" dropdown-item text-sm  py-2 px-4 font-bold block w-full whitespace-nowrap
                               bg-transparent text-gray-700 hover:bg-gray-100
                               "
                             onClick={handleLogout}

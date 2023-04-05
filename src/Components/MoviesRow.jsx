@@ -32,8 +32,8 @@ const MoviesRow = ({ children }) => {
     dots: false,
     infinite: false,
     speed: 500,
-    slidesToShow: 6,
-    slidesToScroll: 5,
+    slidesToShow: 4,
+    slidesToScroll: 4,
     initialSlide: 0,
     prevArrow: <PreviousBtn />,
     nextArrow: <NextBtn />,
@@ -41,8 +41,8 @@ const MoviesRow = ({ children }) => {
       {
         breakpoint: 1680,
         settings: {
-          slidesToShow: 5,
-          slidesToScroll: 6,
+          slidesToShow: 4,
+          slidesToScroll: 4,
           infinite: true,
           dots: true,
         },
@@ -51,7 +51,7 @@ const MoviesRow = ({ children }) => {
         breakpoint: 1500,
         settings: {
           slidesToShow: 4,
-          slidesToScroll: 5,
+          slidesToScroll: 4,
           infinite: true,
           dots: true,
         },

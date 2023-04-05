@@ -1,22 +1,22 @@
-import axios from "axios";
-import React from "react";
+import React, { useEffect } from "react";
 import { useLoaderData } from "react-router-dom";
 import MoviePoster from "../Components/MoviePoster";
 import { myFetch } from "../Store/api/apiSlice";
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 const Search = () => {
-  const { content, q } = useLoaderData();
+  const { results, q } = useLoaderData();
+  useEffect(() => {}, [q]);
 
   return (
     <>
-      {content.results.length ? (
+      {results.length ? (
         <div
           className="container h-full md:pt-10 mx-auto grid grid-cols-3 lg:grid-cols-5 md:grid-cols-3 sm:grid-col-3"
           style={{ minHeight: "90vh" }}
         >
-          {content.results
-            .filter((movie) => movie.poster_path !== null)
+          {results
+            .filter((movie) => movie.movieUrl !== null)
             .map((movie) => {
               return <MoviePoster key={movie.id} movie={movie} />;
             })}
@@ -37,9 +37,10 @@ export const loader = async ({ request }) => {
   const url = new URL(request.url);
   const searchParams = new URLSearchParams(url.search);
   const q = searchParams.get("q");
-  const response = await myFetch(`${BASE_URL}/movies/search`);
-  console.log(response);
-  const content = await response.data;
-  return { content, q };
+  const response = await myFetch(`${BASE_URL}/movies/search?q=${q}`).then(
+    (results) => results.json()
+  );
+  const { results } = response;
+  return { results, q };
 };
 export default Search;

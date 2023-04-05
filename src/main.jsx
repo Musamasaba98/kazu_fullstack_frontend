@@ -40,6 +40,8 @@ import Department from "./Pages/AddDepartment/Index";
 import EditDepartment from "./Pages/AddDepartment/Edit";
 import Genre from "./Pages/Genre/Index";
 import EditGenre from "./Pages/Genre/Edit";
+import UserProfile from "./Pages/UserProfile";
+import "react-toastify/dist/ReactToastify.css";
 
 const router = createBrowserRouter([
   {
@@ -51,6 +53,10 @@ const router = createBrowserRouter([
         index: true,
         element: <Home />,
         loader: homeMovieTvLoader,
+      },
+      {
+        path: "/cin/:username",
+        element: <UserProfile />,
       },
       {
         path: "/search",

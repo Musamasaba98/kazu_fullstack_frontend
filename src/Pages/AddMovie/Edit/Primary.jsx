@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
 import { useFormik } from "formik";
 import { useUpdateMovieMutation } from "../../../Store/api/movieApi";
@@ -6,6 +6,7 @@ import { editMovieValidate } from "../../../Validations/EditMovieValidation";
 import Spinner from "../../../Components/Spinner";
 import { myFetch } from "../../../Store/api/apiSlice";
 import Multiselect from "multiselect-react-dropdown";
+import { ToastContainer, toast } from "react-toastify";
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
@@ -31,6 +32,20 @@ const Primary = () => {
       await updateMovie({ movieId, values });
     },
   });
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success("🦄 Updated Movie!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+  }, [isSuccess]);
 
   if (loading) return <Spinner />;
   return (
@@ -173,6 +188,7 @@ const Primary = () => {
           </div>
         </div>
       </form>
+      <ToastContainer />
     </div>
   );
 };

@@ -5,6 +5,8 @@ import { editMovieImageValidate } from "../../../Validations/EditMovieValidation
 import Spinner from "../../../Components/Spinner";
 import { useParams } from "react-router-dom";
 import { myFetch } from "../../../Store/api/apiSlice";
+import { useEffect } from "react";
+import { ToastContainer, toast } from "react-toastify";
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 const Images = () => {
@@ -24,18 +26,24 @@ const Images = () => {
       for (let value in values) {
         formData.append(value, values[value]);
       }
-      // await myFetch(`${BASE_URL}/movies/${movieId}/edit/images`, {
-      //   method: "PATCH",
-      //   body: formData,
-      // })
-      //   .then((response) => response.json())
-      //   .then((data) => data)
-      //   .catch((err) => console.error(err));
-      // const { data } = response;
-      // console.log(data);
       await updateMovieImage({ movieId, formData }).unwrap();
     },
   });
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success("🦄 Updated Movie!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+  }, [isSuccess]);
+
   if (loading) return <Spinner />;
   return (
     <div className="h-full">
@@ -92,6 +100,7 @@ const Images = () => {
           Save
         </button>
       </form>
+      <ToastContainer />
     </div>
   );
 };

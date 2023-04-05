@@ -11,6 +11,7 @@ import { useFormik } from "formik";
 import { usePostMoviesMutation } from "../../Store/api/movieApi";
 import { movieValidate } from "../../Validations/MovieValidation";
 import Spinner from "../../Components/Spinner";
+import { ToastContainer, toast } from "react-toastify";
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
@@ -41,17 +42,27 @@ const MovieForm = () => {
   });
   useEffect(() => {
     if (movieDetails) {
-      console.log(movieDetails);
       postMovies(movieDetails);
     }
   }, [movieDetails]);
   useEffect(() => {
     if (movieData) {
-      const { data } = movieData;
-      console.log(data);
-      navigate(`/movies/${data.id}`);
+      const { results } = movieData;
+      if (results) {
+        toast.success("🦄 Movie has been created !", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+        navigate(`/movies/${results.id}`);
+      }
     }
-  }, [movieData]);
+  }, [movieData, isSuccess]);
   if (loading) return <Spinner />;
 
   return (
@@ -180,6 +191,7 @@ const MovieForm = () => {
           </div>
         </form>
       </div>
+      <ToastContainer />
     </div>
   );
 };
