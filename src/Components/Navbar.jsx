@@ -277,30 +277,15 @@ const Navbar = () => {
                     </Form>
                   </div>
                 </div>
-
                 {user.role === "ADMIN" ||
                   (user.role === "CREATOR" && (
-                    <div>
-                      <Link to={"edit"}>
-                        <Button>
-                          <CiEdit
-                            size={25}
-                            className="text-black hover:text-yellow-400 mr-2"
-                          />
-                          EDIT
-                        </Button>
+                    <span className="px-2 inline-block text-white pt-2 cursor-pointer">
+                      <Link to="/movies/create">
+                        <HiOutlinePlusCircle size={30} />
                       </Link>
-                      <Button onClick={handleDelete}>
-                        <CiDelete
-                          size={25}
-                          className="text-black hover:text-yellow-400 mr-2"
-                        />
-                        Delete
-                      </Button>
-                    </div>
+                    </span>
                   ))}
               </div>
-
               <div
                 className={"lg:flex  items-center hidden md:visible"}
                 id="example-navbar-danger"

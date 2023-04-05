@@ -160,8 +160,8 @@ const MovieForm = () => {
                 <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
               </svg>
             </div>
-            {formik.touched.language ? (
-              <span style={{ color: "red" }}>{formik.errors.language}</span>
+            {formik.touched.Language ? (
+              <span style={{ color: "red" }}>{formik.errors.Language}</span>
             ) : null}
           </div>
           <Input
@@ -207,9 +207,7 @@ export const loader = async () => {
     ]);
 
     const genreData = genreResponse.data;
-    console.log(genreData);
     const languageData = languageResponse.data;
-    console.log(languageData);
     // Do something with the genreData and languageData here
     return { genreData, languageData };
   } catch (error) {
