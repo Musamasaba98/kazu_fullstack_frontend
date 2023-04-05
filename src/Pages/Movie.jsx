@@ -8,13 +8,10 @@ import coverImage from "../assets/images/coverImage.svg";
 const Movie = () => {
   const [movie, setMovie] = useState({});
   const { movieId } = useParams();
-  console.log(movieId);
   const { data: movieData, isLoading, isSuccess } = useGetMovieQuery(movieId);
   useEffect(() => {
     if (movieData) {
-      console.log(movieData);
       const { data } = movieData;
-      console.log(data);
       setMovie(data);
     }
   }, [movieData]);
