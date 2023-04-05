@@ -8,8 +8,6 @@ import { myFetch } from "../Store/api/apiSlice";
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 const Home = () => {
-  // const { data, isLoading, isSuccess } = useGetMoviesQuery();
-  // isSuccess && console.log(data);
   const loader = useLoaderData() || [{}];
 
   return (
