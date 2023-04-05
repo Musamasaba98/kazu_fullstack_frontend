@@ -8,7 +8,7 @@ import { useLazyGetMeQuery } from "../Store/api/userApi";
 import { setUser, logout } from "../Store/features/userSlice";
 
 function Root() {
-  const { token, user } = useSelector((state) => state.user);
+  const { token } = useSelector((state) => state.user);
   const [isInitialLoadCompleted, setIsInitialLoadCompleted] = useState(false);
   const dispatch = useDispatch();
   const [getUser] = useLazyGetMeQuery();
@@ -28,7 +28,7 @@ function Root() {
   return (
     <>
       <div className="bg-black">
-        <Navbar user={user} />
+        <Navbar />
         <div
           className="flex flex-wrap justify-between md:items-center"
           style={{ minHeight: "56vh" }}

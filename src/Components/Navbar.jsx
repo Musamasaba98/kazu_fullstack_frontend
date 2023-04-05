@@ -10,14 +10,15 @@ import {
 import Logo from "../assets/images/Logo.svg";
 import { HiOutlineMenuAlt2, HiOutlinePlusCircle } from "react-icons/hi";
 import { HiBell } from "react-icons/hi";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../Store/features/userSlice";
 import { useLogoutUserMutation } from "../Store/api/authApi";
 import { useLazyGetMeQuery } from "../Store/api/userApi";
 
-const Navbar = ({ user }) => {
+const Navbar = () => {
   const { movieId } = useParams();
   const { q } = useRouteLoaderData("search") || { q: "" };
+  const { user } = useSelector((state) => state.user);
   const submit = useSubmit();
   const navigate = useNavigate();
   const [getMe] = useLazyGetMeQuery();
