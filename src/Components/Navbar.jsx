@@ -277,6 +277,7 @@ const Navbar = () => {
                     </Form>
                   </div>
                 </div>
+                {console.log(user.role)}
                 {user.role === "ADMIN" ||
                   (user.role === "CREATOR" && (
                     <span className="px-2 inline-block text-white pt-2 cursor-pointer">
