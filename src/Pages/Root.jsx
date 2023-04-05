@@ -9,9 +9,6 @@ import { setUser, logout } from "../Store/features/userSlice";
 
 function Root() {
   const { token, user } = useSelector((state) => state.user);
-  if (user && user.role === "ADMIN") {
-    navigate("/movies/create");
-  }
   const [isInitialLoadCompleted, setIsInitialLoadCompleted] = useState(false);
   const dispatch = useDispatch();
   const [getUser] = useLazyGetMeQuery();

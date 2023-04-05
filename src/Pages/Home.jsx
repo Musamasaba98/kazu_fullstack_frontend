@@ -14,18 +14,19 @@ const Home = () => {
 
   return (
     <div className="flex flex-col w-4/5 mx-auto">
-      {loader.map((category) => {
-        return (
-          <MoviesContainer key={category.title}>
-            <MoviesTitle>{category.title}</MoviesTitle>
-            <MoviesRow key={crypto.randomUUID()}>
-              {category.data.map((data) => {
-                return <MoviePoster key={data.id} movie={data} />;
-              })}
-            </MoviesRow>
-          </MoviesContainer>
-        );
-      })}
+      {loader.length &&
+        loader.map((category) => {
+          return (
+            <MoviesContainer key={category.title}>
+              <MoviesTitle>{category.title}</MoviesTitle>
+              <MoviesRow key={crypto.randomUUID()}>
+                {category.data.map((data) => {
+                  return <MoviePoster key={data.id} movie={data} />;
+                })}
+              </MoviesRow>
+            </MoviesContainer>
+          );
+        })}
     </div>
   );
 };
