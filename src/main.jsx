@@ -42,6 +42,7 @@ import Genre from "./Pages/Genre/Index";
 import EditGenre from "./Pages/Genre/Edit";
 import UserProfile from "./Pages/UserProfile";
 import "react-toastify/dist/ReactToastify.css";
+import Dashboard from "./Pages/Admin/Dashboard";
 
 const router = createBrowserRouter([
   {
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
       {
         path: "/cin/:username",
         element: <UserProfile />,
+      },
+      {
+        path: "/dashboard/admin/:username",
+        element: <Dashboard />,
       },
       {
         path: "/search",

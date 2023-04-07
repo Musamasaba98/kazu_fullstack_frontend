@@ -3,7 +3,6 @@ import { Outlet } from "react-router-dom";
 import SidebarTab from "../../../Components/SidebarTab";
 
 const Edit = () => {
-  const [activeTab, setActiveTab] = useState("primary");
   return (
     <div className="flex flex-col items-center md:flex-row md:items-start mb-2 mx-auto w-11/12 ">
       {/* Sidebar */}

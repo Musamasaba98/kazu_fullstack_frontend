@@ -364,15 +364,27 @@ const Navbar = () => {
                               showAccount ? "block" : "hidden"
                             }`}
                       >
-                        <li>
-                          <Link
-                            className=" dropdown-item text-sm py-2 px-4 font-bold block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100
+                        {user.role === "ADMIN" ? (
+                          <li>
+                            <Link
+                              className=" dropdown-item text-sm py-2 px-4 font-bold block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100
                           "
-                            to={`cin/${user.username}`}
-                          >
-                            Profile
-                          </Link>
-                        </li>
+                              to={`cin/${user.username}`}
+                            >
+                              Profile
+                            </Link>
+                          </li>
+                        ) : (
+                          <li>
+                            <Link
+                              className=" dropdown-item text-sm py-2 px-4 font-bold block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100
+                          "
+                              to={`dashboard/admin/${user.username}`}
+                            >
+                              Dashboard
+                            </Link>
+                          </li>
+                        )}
 
                         <hr className="h-0 my-2 border border-solid border-t-0 border-gray-700 opacity-25" />
                         <li>
