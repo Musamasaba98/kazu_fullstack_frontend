@@ -1,5 +1,6 @@
 import React from "react";
 import SidePannel from "./SidePannel";
+import Index from "./Index";
 
 const Dashboard = () => {
   return (
@@ -7,11 +8,8 @@ const Dashboard = () => {
       <div>
         <SidePannel />
       </div>
-      <div className="flex flex-wrap text-white">
-        <div className="w-1/2">Child Component 1</div>
-        <div className="w-1/2">Child Component 2</div>
-        <div className="w-1/3">Child Component 3</div>
-        <div className="w-2/3">Child Component 4</div>
+      <div className="flex flex-wrap">
+        <Index />
       </div>
     </div>
   );
