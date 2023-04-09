@@ -78,27 +78,26 @@ const MovieCard = ({ movie }) => {
             )}
             <p className="hidden md:block">My List</p>
           </Button>
-          {user.role === "ADMIN" ||
-            (user.role === "CREATOR" && (
-              <>
-                <Link to={"edit"}>
-                  <Button>
-                    <CiEdit
-                      size={25}
-                      className="text-black hover:text-yellow-400 mr-2"
-                    />
-                    <p className="hidden md:block">EDIT</p>
-                  </Button>
-                </Link>
-                <Button onClick={handleDelete}>
-                  <CiTrash
+          {(user.role === "ADMIN" || user.role === "CREATOR") && (
+            <>
+              <Link to={"edit"}>
+                <Button>
+                  <CiEdit
                     size={25}
                     className="text-black hover:text-yellow-400 mr-2"
                   />
-                  <p className="hidden md:block">DELETE</p>
+                  <p className="hidden md:block">EDIT</p>
                 </Button>
-              </>
-            ))}
+              </Link>
+              <Button onClick={handleDelete}>
+                <CiTrash
+                  size={25}
+                  className="text-black hover:text-yellow-400 mr-2"
+                />
+                <p className="hidden md:block">DELETE</p>
+              </Button>
+            </>
+          )}
         </div>
         <p className="text-gray-400 my-3 py-4 font-medium">{`${movie.description}`}</p>
       </div>
