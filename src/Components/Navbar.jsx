@@ -365,16 +365,6 @@ const Navbar = () => {
                             }`}
                       >
                         {user.role === "ADMIN" ? (
-                          <li>
-                            <Link
-                              className=" dropdown-item text-sm py-2 px-4 font-bold block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100
-                          "
-                              to={`cin/${user.username}`}
-                            >
-                              Profile
-                            </Link>
-                          </li>
-                        ) : (
                           <>
                             <li>
                               <Link
@@ -392,6 +382,18 @@ const Navbar = () => {
                                 to={`dashboard/admin/${user.username}`}
                               >
                                 Dashboard
+                              </Link>
+                            </li>
+                          </>
+                        ) : (
+                          <>
+                            <li>
+                              <Link
+                                className=" dropdown-item text-sm py-2 px-4 font-bold block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100
+                          "
+                                to={`cin/${user.username}`}
+                              >
+                                Profile
                               </Link>
                             </li>
                           </>
