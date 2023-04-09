@@ -278,14 +278,13 @@ const Navbar = () => {
                   </div>
                 </div>
                 <div className="flex items-center justify-center">
-                  {user.role == "ADMIN" ||
-                    (user.role == "CREATOR" && (
-                      <span className="px-2 inline-block text-white pt-2 cursor-pointer">
-                        <Link to="/movies/create">
-                          <HiOutlinePlusCircle size={30} />
-                        </Link>
-                      </span>
-                    ))}
+                  {(user.role == "ADMIN" || user.role == "CREATOR") && (
+                    <span className="px-2 inline-block text-white pt-2 cursor-pointer">
+                      <Link to="/movies/create">
+                        <HiOutlinePlusCircle size={30} />
+                      </Link>
+                    </span>
+                  )}
                 </div>
               </div>
               <div
