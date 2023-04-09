@@ -277,7 +277,7 @@ const Navbar = () => {
                     </Form>
                   </div>
                 </div>
-                <div>
+                <div className="flex items-center justify-center">
                   {user.role == "ADMIN" ||
                     (user.role == "CREATOR" && (
                       <span className="px-2 inline-block text-white pt-2 cursor-pointer">
