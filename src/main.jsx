@@ -45,6 +45,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Dashboard from "./Pages/Admin/Dashboard";
 import DashIndex from "./Pages/Admin/Index";
 import AddGenre from "./Pages/Admin/Genre/AddGenre";
+import AddLanguage from "./Pages/Admin/Language/AddLanguage";
 
 const router = createBrowserRouter([
   {
@@ -69,6 +70,10 @@ const router = createBrowserRouter([
           {
             path: "genre",
             element: <AddGenre />,
+          },
+          {
+            path: "language",
+            element: <AddLanguage />,
           },
         ],
       },
