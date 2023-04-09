@@ -46,6 +46,7 @@ import Dashboard from "./Pages/Admin/Dashboard";
 import DashIndex from "./Pages/Admin/Index";
 import AddGenre from "./Pages/Admin/Genre/AddGenre";
 import AddLanguage from "./Pages/Admin/Language/AddLanguage";
+import AddCompany from "./Pages/Admin/Company/AddCompany";
 
 const router = createBrowserRouter([
   {
@@ -74,6 +75,10 @@ const router = createBrowserRouter([
           {
             path: "language",
             element: <AddLanguage />,
+          },
+          {
+            path: "company",
+            element: <AddCompany />,
           },
         ],
       },

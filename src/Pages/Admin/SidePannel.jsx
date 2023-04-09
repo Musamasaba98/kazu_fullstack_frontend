@@ -204,7 +204,9 @@ const SidePannel = () => {
               <li className="cursor-pointer hover:font-bold pb-[5px]">
                 View Companies
               </li>
-              <li className="cursor-pointer hover:font-bold pb-[5px]">Add</li>
+              <li className="cursor-pointer hover:font-bold pb-[5px]">
+                <Link to={"company"}>Add</Link>{" "}
+              </li>
               <li className="cursor-pointer hover:font-bold pb-[5px]">Edit</li>
               <li className="cursor-pointer hover:font-bold">Delete </li>
             </ul>
