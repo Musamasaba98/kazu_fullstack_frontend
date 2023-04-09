@@ -1,6 +1,6 @@
 import React from "react";
 import SidePannel from "./SidePannel";
-import Index from "./Index";
+import { Outlet } from "react-router-dom";
 
 const Dashboard = () => {
   return (
@@ -9,7 +9,7 @@ const Dashboard = () => {
         <SidePannel />
       </div>
       <div className="flex flex-wrap">
-        <Index />
+        <Outlet />
       </div>
     </div>
   );

@@ -12,6 +12,7 @@ import {
   FaTachometerAlt,
   FaWrench,
 } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const SidePannel = () => {
   const [open, setOpen] = useState(false);
@@ -166,7 +167,9 @@ const SidePannel = () => {
               <li className="cursor-pointer hover:font-bold pb-[5px]">
                 View Genre
               </li>
-              <li className="cursor-pointer hover:font-bold pb-[5px]">Add</li>
+              <li className="cursor-pointer hover:font-bold pb-[5px]">
+                <Link to={"genre"}>Add</Link>{" "}
+              </li>
               <li className="cursor-pointer hover:font-bold pb-[5px]">Edit</li>
               <li className="cursor-pointer hover:font-bold">Delete </li>
             </ul>
