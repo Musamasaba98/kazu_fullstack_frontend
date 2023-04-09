@@ -58,7 +58,7 @@ const Index = () => {
     },
   ];
   return (
-    <div className="w-[100vw] md:w-[50vw] lg:w-[82vw] xl:w-[86vw] pt-[10px] px-[25px] bg-[#F8F9FC]">
+    <div className="w-[100vw] md:w-[50vw] lg:w-[82vw] xl:w-[85vw] pt-[10px] px-[25px] bg-[#F8F9FC]">
       <div className="flex items-center justify-between">
         <h1 className="text-[5a5c69] text-[28px] pl-[20px] md:pl-[0px] leading-[34px] font-normal cursor-pointer">
           Dashboard
