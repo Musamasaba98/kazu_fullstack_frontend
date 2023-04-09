@@ -4,7 +4,7 @@ import Index from "./Index";
 
 const Dashboard = () => {
   return (
-    <div className="flex mt-[-0.8rem]">
+    <div className="flex relative mt-[-0.8rem]">
       <div>
         <SidePannel />
       </div>

@@ -5,7 +5,7 @@ import { BsDashLg, BsPlusLg } from "react-icons/bs";
 import { myListActions } from "../Store/features/myListSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { CiEdit } from "react-icons/ci";
+import { CiEdit, CiTrash } from "react-icons/ci";
 import { useDeleteMovieMutation } from "../Store/api/movieApi";
 import Spinner from "./Spinner";
 import { ToastContainer, toast } from "react-toastify";
@@ -62,7 +62,7 @@ const MovieCard = ({ movie }) => {
               size={25}
               className="text-black hover:text-yellow-400 mr-2"
             />
-            Play
+            <p className="hidden md:block">Play</p>
           </Button>
           <Button onClick={!added ? handleAddMovie : handleRemoveMovie}>
             {!added ? (
@@ -76,7 +76,7 @@ const MovieCard = ({ movie }) => {
                 className="text-black hover:text-yellow-400 mr-2"
               />
             )}
-            My List
+            <p className="hidden md:block">My List</p>
           </Button>
           {user.role === "ADMIN" ||
             (user.role === "CREATOR" && (
@@ -87,15 +87,15 @@ const MovieCard = ({ movie }) => {
                       size={25}
                       className="text-black hover:text-yellow-400 mr-2"
                     />
-                    EDIT
+                    <p className="hidden md:block">EDIT</p>
                   </Button>
                 </Link>
                 <Button onClick={handleDelete}>
-                  <CiEdit
+                  <CiTrash
                     size={25}
                     className="text-black hover:text-yellow-400 mr-2"
                   />
-                  Delete
+                  <p className="hidden md:block">DELETE</p>
                 </Button>
               </>
             ))}

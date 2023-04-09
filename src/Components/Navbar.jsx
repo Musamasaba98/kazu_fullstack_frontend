@@ -50,7 +50,7 @@ const Navbar = () => {
     <>
       {user && (
         <nav
-          className={`sticky top-0  flex flex-wrap items-center justify-between px-2 py-3 z-10  mb-3 ${
+          className={`sticky top-0  flex flex-wrap items-center justify-between px-2 py-3 z-50  mb-3 ${
             movieId ? "" : "bg-gray-900"
           }`}
         >
