@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BsArrowLeftShort } from "react-icons/bs";
+import { BsArrowLeftShort, BsPeople, BsPeopleFill } from "react-icons/bs";
 import {
   FaCalendarAlt,
   FaChevronRight,
@@ -66,7 +66,7 @@ const SidePannel = () => {
               onClick={() => setOpenSublist1(!openSublist1)}
             >
               <div className="flex items-center  gap-[10px]">
-                <FaRegSun color="white" />
+                <BsPeopleFill color="white" />
                 <p
                   className={`text-[14px]  ${
                     open ? "hidden" : "block"
@@ -84,7 +84,7 @@ const SidePannel = () => {
             </div>
             <ul
               className={`list-none pl-[1rem] text-sm text-white/[0.8] duration-500 pt-[-30px] ${
-                openSublist1 ? "block" : "hidden"
+                openSublist1 && open === false ? "block" : "hidden"
               }`}
             >
               <li className="cursor-pointer hover:font-bold">View Users</li>
@@ -118,7 +118,7 @@ const SidePannel = () => {
             </div>
             <ul
               className={`list-none pl-[1rem] text-sm text-white/[0.8] duration-500 pt-[-30px] ${
-                openSublist2 ? "block" : "hidden"
+                openSublist2 && open === false ? "block" : "hidden"
               }`}
             >
               <li className="cursor-pointer hover:font-bold">View Movies</li>
@@ -152,7 +152,7 @@ const SidePannel = () => {
             </div>
             <ul
               className={`list-none pl-[1rem] text-sm text-white/[0.8] duration-500 pt-[-30px] ${
-                openSublist3 ? "block" : "hidden"
+                openSublist3 && open === false ? "block" : "hidden"
               }`}
             >
               <li className="cursor-pointer hover:font-bold">View Genre</li>
@@ -185,7 +185,7 @@ const SidePannel = () => {
             </div>
             <ul
               className={`list-none pl-[1rem] text-sm text-white/[0.8] duration-500 pt-[-30px] ${
-                openSublist4 ? "block" : "hidden"
+                openSublist4 && open === false ? "block" : "hidden"
               }`}
             >
               <li className="cursor-pointer hover:font-bold">View Companies</li>
@@ -218,7 +218,7 @@ const SidePannel = () => {
             </div>
             <ul
               className={`list-none pl-[1rem] text-sm text-white/[0.8] duration-500 pt-[-30px] ${
-                openSublist5 ? "block" : "hidden"
+                openSublist5 && open === false ? "block" : "hidden"
               }`}
             >
               <li className="cursor-pointer hover:font-bold">View Language</li>
