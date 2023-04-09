@@ -3,6 +3,9 @@ import { BsArrowLeftShort } from "react-icons/bs";
 import {
   FaCalendarAlt,
   FaChevronRight,
+  FaIndustry,
+  FaLanguage,
+  FaList,
   FaRegChartBar,
   FaRegSun,
   FaStickyNote,
@@ -12,6 +15,11 @@ import {
 
 const SidePannel = () => {
   const [open, setOpen] = useState(true);
+  const [openSublist1, setOpenSublist1] = useState(false);
+  const [openSublist2, setOpenSublist2] = useState(false);
+  const [openSublist3, setOpenSublist3] = useState(false);
+  const [openSublist4, setOpenSublist4] = useState(false);
+  const [openSublist5, setOpenSublist5] = useState(false);
   return (
     <div className={`absolute z-40 md:relative `}>
       <div
@@ -52,37 +60,172 @@ const SidePannel = () => {
           >
             INTERFACE
           </p>
-          <div className="flex items-center justify-between gap-[10px] py-[15px] cursor-pointer">
-            <div className="flex items-center gap-[10px]">
-              <FaRegSun color="white" />
-              <p
-                className={`text-[14px]  ${
-                  open ? "hidden" : "block"
-                } font-normal md:block leading-[20px] text-white`}
-              >
-                Pages
-              </p>
+          <div>
+            <div
+              className="flex items-center justify-between gap-[10px] py-[15px] cursor-pointer "
+              onClick={() => setOpenSublist1(!openSublist1)}
+            >
+              <div className="flex items-center  gap-[10px]">
+                <FaRegSun color="white" />
+                <p
+                  className={`text-[14px]  ${
+                    open ? "hidden" : "block"
+                  } font-normal md:block leading-[20px] text-white`}
+                >
+                  Users
+                </p>
+              </div>
+              <FaChevronRight
+                color="white"
+                className={`${open && "hidden"} ${
+                  openSublist1 && "rotate-90"
+                } md:block`}
+              />
             </div>
-            <FaChevronRight
-              color="white"
-              className={`${open && "hidden"} md:block`}
-            />
+            <ul
+              className={`list-none pl-[1rem] text-sm text-white/[0.8] duration-500 pt-[-30px] ${
+                openSublist1 ? "block" : "hidden"
+              }`}
+            >
+              <li className="cursor-pointer hover:font-bold">View Users</li>
+              <li className="cursor-pointer hover:font-bold">New Users</li>
+              <li className="cursor-pointer hover:font-bold">Add</li>
+              <li className="cursor-pointer hover:font-bold">Edit</li>
+              <li className="cursor-pointer hover:font-bold">Delete </li>
+            </ul>
           </div>
-          <div className="flex items-center justify-between gap-[10px] py-[15px] cursor-pointer">
-            <div className="flex items-center gap-[10px]">
-              <FaRegChartBar color="white" />
-              <p
-                className={`text-[14px]  ${
-                  open ? "hidden" : "block"
-                } font-normal md:block leading-[20px] text-white`}
-              >
-                Charts
-              </p>
+          <div>
+            <div
+              className="flex items-center justify-between gap-[10px] py-[15px] cursor-pointer "
+              onClick={() => setOpenSublist2(!openSublist2)}
+            >
+              <div className="flex items-center gap-[10px]">
+                <FaRegChartBar color="white" />
+                <p
+                  className={`text-[14px]  ${
+                    open ? "hidden" : "block"
+                  } font-normal md:block leading-[20px] text-white`}
+                >
+                  Movies
+                </p>
+              </div>
+              <FaChevronRight
+                color="white"
+                className={`${open && "hidden"} ${
+                  openSublist2 && "rotate-90"
+                } md:block`}
+              />
             </div>
-            <FaChevronRight
-              color="white"
-              className={`${open && "hidden"} md:block`}
-            />
+            <ul
+              className={`list-none pl-[1rem] text-sm text-white/[0.8] duration-500 pt-[-30px] ${
+                openSublist2 ? "block" : "hidden"
+              }`}
+            >
+              <li className="cursor-pointer hover:font-bold">View Movies</li>
+              <li className="cursor-pointer hover:font-bold">New Movies</li>
+              <li className="cursor-pointer hover:font-bold">Add</li>
+              <li className="cursor-pointer hover:font-bold">Edit</li>
+              <li className="cursor-pointer hover:font-bold">Delete </li>
+            </ul>
+          </div>
+          <div>
+            <div
+              className="flex items-center justify-between gap-[10px] py-[15px] cursor-pointer"
+              onClick={() => setOpenSublist3(!openSublist3)}
+            >
+              <div className="flex items-center gap-[10px]">
+                <FaList color="white" />
+                <p
+                  className={`text-[14px]  ${
+                    open ? "hidden" : "block"
+                  } font-normal md:block leading-[20px] text-white`}
+                >
+                  Genre
+                </p>
+              </div>
+              <FaChevronRight
+                color="white"
+                className={`${open && "hidden"} ${
+                  openSublist3 && "rotate-90"
+                } md:block`}
+              />
+            </div>
+            <ul
+              className={`list-none pl-[1rem] text-sm text-white/[0.8] duration-500 pt-[-30px] ${
+                openSublist3 ? "block" : "hidden"
+              }`}
+            >
+              <li className="cursor-pointer hover:font-bold">View Genre</li>
+              <li className="cursor-pointer hover:font-bold">Add</li>
+              <li className="cursor-pointer hover:font-bold">Edit</li>
+              <li className="cursor-pointer hover:font-bold">Delete </li>
+            </ul>
+          </div>
+          <div>
+            <div
+              className="flex items-center justify-between gap-[10px] py-[15px] cursor-pointer"
+              onClick={() => setOpenSublist4(!openSublist4)}
+            >
+              <div className="flex items-center gap-[10px]">
+                <FaIndustry color="white" />
+                <p
+                  className={`text-[14px]  ${
+                    open ? "hidden" : "block"
+                  } font-normal md:block leading-[20px] text-white`}
+                >
+                  Companies
+                </p>
+              </div>
+              <FaChevronRight
+                color="white"
+                className={`${open && "hidden"} ${
+                  openSublist4 && "rotate-90"
+                } md:block`}
+              />
+            </div>
+            <ul
+              className={`list-none pl-[1rem] text-sm text-white/[0.8] duration-500 pt-[-30px] ${
+                openSublist4 ? "block" : "hidden"
+              }`}
+            >
+              <li className="cursor-pointer hover:font-bold">View Companies</li>
+              <li className="cursor-pointer hover:font-bold">Add</li>
+              <li className="cursor-pointer hover:font-bold">Edit</li>
+              <li className="cursor-pointer hover:font-bold">Delete </li>
+            </ul>
+          </div>
+          <div>
+            <div
+              className="flex items-center justify-between gap-[10px] py-[15px] cursor-pointer"
+              onClick={() => setOpenSublist5(!openSublist5)}
+            >
+              <div className="flex items-center gap-[10px]">
+                <FaLanguage color="white" />
+                <p
+                  className={`text-[14px]  ${
+                    open ? "hidden" : "block"
+                  } font-normal md:block leading-[20px] text-white`}
+                >
+                  Languages
+                </p>
+              </div>
+              <FaChevronRight
+                color="white"
+                className={`${open && "hidden"} ${
+                  openSublist5 && "rotate-90"
+                } md:block`}
+              />
+            </div>
+            <ul
+              className={`list-none pl-[1rem] text-sm text-white/[0.8] duration-500 pt-[-30px] ${
+                openSublist5 ? "block" : "hidden"
+              }`}
+            >
+              <li className="cursor-pointer hover:font-bold">View Language</li>
+              <li className="cursor-pointer hover:font-bold">Add</li>
+              <li className="cursor-pointer hover:font-bold">Edit</li>
+              <li className="cursor-pointer hover:font-bold">Delete </li>
+            </ul>
           </div>
         </div>
         <div className="pt-[15px] border-b-[1px] border-[#EDEDED]/[0.3]">

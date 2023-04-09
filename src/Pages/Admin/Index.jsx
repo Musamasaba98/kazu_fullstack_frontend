@@ -58,14 +58,14 @@ const Index = () => {
     },
   ];
   return (
-    <div className="w-100v lg:w-86v pt-[10px] px-[25px] bg-[#F8F9FC]">
+    <div className="w-[100vw] md:w-[50vw] lg:w-[82vw] xl:w-[86vw] pt-[10px] px-[25px] bg-[#F8F9FC]">
       <div className="flex items-center justify-between">
         <h1 className="text-[5a5c69] text-[28px] pl-[20px] md:pl-[0px] leading-[34px] font-normal cursor-pointer">
           Dashboard
         </h1>
         <Button>General Report</Button>
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-[30px] mt-[25px] pb-[15px]">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-[30px] mt-[25px] pb-[15px]">
         <div className="h-[100px] rounded-[8px] bg-white border-l-[4px] border-[#4E73DF] flex items-center justify-between px-[30px] cursor-pointer hover:shadow-lg transform hover:scale-[103%] transition duration-300 ease-out">
           <div className="">
             <h2 className="text-[#B549DF] text-[11px] leading-[17px] font-bold">
@@ -112,7 +112,7 @@ const Index = () => {
         </div>
       </div>
       <div className="flex flex-col lg:flex-row mt-[22px] w-full gap-[30px] ">
-        <div className="basis-5/6 border bg-white shadow-md cursor-pointer rounded-[4px]">
+        <div className="basis-[70%] border bg-white shadow-md cursor-pointer rounded-[4px]">
           <div className="bg-[#F8F9FC] flex items-center justify-between py-[15px] px-[20px] border-b-[1px] border-[#EDEDED] mb-[20px]">
             <h1>Revenue Overview</h1>
             <FaEllipsisV color="gray" className="cursor-pointer" />
@@ -144,7 +144,7 @@ const Index = () => {
             </LineChart>
           </ResponsiveContainer>
         </div>
-        <div className="basis-1/6 border bg-white shadow-md cursor-pointer rounded-[4px]">
+        <div className="basis-[30%] border bg-white shadow-md cursor-pointer rounded-[4px]">
           <div className="bg-[#F8F9FC] flex items-center justify-between py-[15px] px-[20px] border-b-[1px] border-[#EDEDED] mb-[20px]">
             <h1>Top Genres</h1>
             <FaEllipsisV color="gray" className="cursor-pointer" />
