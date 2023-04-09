@@ -277,14 +277,16 @@ const Navbar = () => {
                     </Form>
                   </div>
                 </div>
-                {user.role == "ADMIN" ||
-                  (user.role == "CREATOR" && (
-                    <span className="px-2 inline-block text-white pt-2 cursor-pointer">
-                      <Link to="/movies/create">
-                        <HiOutlinePlusCircle size={30} />
-                      </Link>
-                    </span>
-                  ))}
+                <div>
+                  {user.role == "ADMIN" ||
+                    (user.role == "CREATOR" && (
+                      <span className="px-2 inline-block text-white pt-2 cursor-pointer">
+                        <Link to="/movies/create">
+                          <HiOutlinePlusCircle size={30} />
+                        </Link>
+                      </span>
+                    ))}
+                </div>
               </div>
               <div
                 className={"lg:flex  items-center hidden md:visible"}
